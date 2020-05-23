@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="1.动画有哪些坑    连续push同一个控制器，优惠会默认转场动画的存才，并且执行转场动画需要时间，比如一个界面有多个入口push时，当同时点击会导致pushing the same view controller instance more than once is not supported，可以在navigationVC的push代理方法中添加一个状态标识判断是否正在pushUIView的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="总结二">
+<meta property="og:url" content="https://lujaylan.github.io/2019/05/19/%E6%80%BB%E7%BB%93%E4%BA%8C/index.html">
+<meta property="og:site_name" content="卤蛋的博客">
+<meta property="og:description" content="1.动画有哪些坑    连续push同一个控制器，优惠会默认转场动画的存才，并且执行转场动画需要时间，比如一个界面有多个入口push时，当同时点击会导致pushing the same view controller instance more than once is not supported，可以在navigationVC的push代理方法中添加一个状态标识判断是否正在pushUIView的">
+<meta property="article:published_time" content="2019-05-19T10:07:37.000Z">
+<meta property="article:modified_time" content="2020-05-09T15:08:56.337Z">
+<meta property="article:author" content="Jaylan lu">
+<meta property="article:tag" content="iOS">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://lujaylan.github.io/2019/05/19/总结二/"/>
+
+
+
+
+
+  <title>总结二 | 卤蛋的博客</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">卤蛋的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">勤学如春起之苗，不见其增，日有所长；辍学如磨刀之石，不见其损，日有所亏</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lujaylan.github.io/2019/05/19/%E6%80%BB%E7%BB%93%E4%BA%8C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jaylan lu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="卤蛋的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">总结二</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-19T18:07:37+08:00">
+                2019-05-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong>1.动画有哪些坑</strong>  </p>
+<blockquote>
+<p>连续push同一个控制器，优惠会默认转场动画的存才，并且执行转场动画需要时间，比如一个界面有多个入口push时，当同时点击会导致pushing the same view controller instance more than once is not supported，可以在navigationVC的push代理方法中添加一个状态标识判断是否正在push<br>UIView的动画在执行过程中按下home键可能会出现动画停止的情况，block会瞬间执行完成，finish会为false<br>执行完毕默认会复位，要保留位置需要设置两个属性removeOnCompletion = NO.  </p>
+</blockquote>
+<p><strong>2.客户反馈的无法重现的问题如何处理</strong>  </p>
+<p><strong>3.用户常用习惯行为如何获取</strong> </p>
+<blockquote>
+<p>如lbs获取用户位置数据<br>搜索框中获取用户关注信息如淘宝<br>采集用户发布的数据如帖子、微博  </p>
+</blockquote>
+<p><strong>4.ViewDidLoad中调用NSTimer的inValidate方法会怎样</strong>  </p>
+<blockquote>
+<p>NSTimer加入runloop后，runloop会对NSTimer进行强引用，NSTimer会对target进行强引用，self就可能会对NSTimer循环引用而导致内存泄漏<br>解决办法：1.在ViewWillDisappear或ViewDidDisappear方法中手动调用invalidate并置空  2.给NSTimer添加一个分类，控制器调用NSTimer的分类方法，分类方法中传递block解决  3.利用runtime构造第三方target  </p>
+</blockquote>
+<p><a href="http://www.jianshu.com/c/5458bca566a9" target="_blank" rel="noopener">链接</a>  </p>
+<p><strong>5.数据库中加表了如何处理之前的版本</strong><br>总体方案及思路<br>流程图  </p>
+<ol>
+<li>在每次运行程序时，判断是否存在数据库，若不存在则创建数据库，若存在取出数据库版本号进行其他处理  </li>
+<li>当用户第一次下载安装APP的时候，第一次建立版本库，将我们的数据库信息存入数据库中，同时保存一个当前版本号加一的字段到数据库<br>那么问题来了，为什么我们需要将版本信息加一呢，这是为了以后进行版本判断的时候更加方便  </li>
+<li>还有一个问题，为什么我们将版本信息放入到数据库而不使用userdefault呢？原因是你需要考虑当前APP有不同用户登录时，userdefault是所有数据共享的，不能根据不同的用户来处理他的信息，判断他的信息是否需要更新  </li>
+<li>当用户更新APP的时候，会直接从数据库中取出上一次保存的版本字段，例如2.0版本，会直接从case2开始执行，修改完数据结构以后，再一次将版本字段存到数据库中  </li>
+<li>所以每更新一次版本，如果数据结构信息有变动的时候，直接在后面加case语句即可。<br><a href="http://www.jianshu.com/p/5e1b1ac6d224" target="_blank" rel="noopener">链接</a>  </li>
+</ol>
+<p><strong>6.Json版本兼容处理</strong> </p>
+<p><strong>7.APP间通信机制</strong><br><strong>(1)UIPasteboard</strong><br>剪切板是应用程序之间传递数据的简单方式，建议不要使用全局的粘贴板，而是自己根据名字创建一个新的粘贴板，防止其他地方全部拷贝的影响。然后把需要共享的内容复制到粘贴板，粘贴板的内容可以是文本，URL、图片、UIColor等，另一个APP就可以根据粘贴的名字去读取相关的信息  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;Example1设置粘贴板的内容:</span><br><span class="line">    UIPasteboard *pasteboard &#x3D; [UIPasteboard pasteboardWithName:@&quot;myPasteboard&quot; create:YES];</span><br><span class="line">    pasteboard.string &#x3D; @&quot;myShareData&quot;;  </span><br><span class="line">&#x2F;&#x2F;Example2读取粘贴板的内容:</span><br><span class="line">    UIPasteboard *pasteboard &#x3D; [UIPasteboard pasteboardWithName:@&quot;myPasteboard&quot; create:NO];</span><br><span class="line">    NSString *content &#x3D; pasteboard.string;</span><br><span class="line">&#96;&#96;&#96;  </span><br><span class="line"></span><br><span class="line">**(2)Custom URL Scheme**   </span><br><span class="line">URL scheme能够让我们通过自定义的协议在应用程序间传递信息，当你想要发送数据给一个实现自定义URL Scheme的应用是，只需要创建好合适的URL,然后调用OPenURl:方法，系统就会载入注册了该scheme的应用然后将你的url传递给它，比如如下代码，todolist是一个其他应用注册的scheme，通过openURL便可以将服务请求发送到该应用（自定义的URL scheme要能够唯一标识该APP，如果你的url scheme跟别人冲突了，那么你的APP就不一定会被调起，iOS并不保证调用哪个应用）。</span><br></pre></td></tr></table></figure>
+<p>NSURL *myURL = [NSURL URlWithString:@”todolist://newid=20”];<br>[[UIApplication sharedApplication] openUrl:myUrl];</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">**注册URL scheme**      </span><br><span class="line">为了能够处理url请求，我们需要先注册自定义的URL Scheme，只需要在info tab下的url types添加即可，比如我们这里注册Example2的URL schmeme.</span><br><span class="line"></span><br><span class="line">**注册URL  scheme**  </span><br><span class="line">Identifier用于表示名称，为了唯一性可以采用反转域名的形式，另外我们设置URL Scheme为Example2,以及role为Viewer(Viewer表示只能读取该URL但不能修改，Editor可以对URL进行读写)，这样Example2就能接收类似“Example2:\”的url请求了，可以在浏览器中输入“Example2:\”链接打开APP。  </span><br><span class="line">**处理url请求**  </span><br><span class="line">当url请求到来时，所有的url都会传递给你的APPdelegate，我们需要实现application：openUrl：sourceApplication：annotation:方法来接收处理对应的url，所以假如你想通过url方式来传递数据，只需要将数据添加到url中即可，另外的通过解析该url来获取对应的数据  </span><br><span class="line">Example1发送携带参数的url到Example2：</span><br></pre></td></tr></table></figure>
+<p>NSString *string = @””Example2://name=jiangbin#age=1”<br>NSURL *url = [NSURL URLWithString:string];<br>[[UIApplication sharedApplication] openURL:url];<br>Example2处理URL请求并解析:<br>-(BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation<br>{<br>    if ([[url scheme] isEqualToString:@”Example2”]) {<br>        NSString *content = [url resourceSpecifier];<br>        //解析content获取数据<br>        //…<br>        return YES;<br>    }<br>    return NO;<br>}</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">**(3)Shared Keychain Acess**  </span><br><span class="line">iOS的keychain提供一种安全保存信息的方式，可以保存密码等数据，而且keychain中的数据不会因为你删除app而丢失，你可以在重新安装后继续读取keychain中的数据。通常每个应用程序只允许访问自己在keychain中保存的数据，不过假如你使用同一个证书的话，不同的app也可以通过keychain来实现应用间的数据共享，之前下载百度贴吧应用的时候发现首次打开它就自动登录了，可能百度的应用之间就是通过这种方式共享用户名密码进行登录的，之前登录过百度云。</span><br><span class="line">为了实现keychain共享数据，我们需要开启Keychain Sharing，开启方法如下，然后添加设置相同的Keychain Group，不过别忘记了添加Security.framework。</span><br><span class="line"></span><br><span class="line">Example1</span><br><span class="line"></span><br><span class="line">Example2</span><br><span class="line">Example1保存数据到keychain(为了简单使用SSKeychian)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>(void)setKeyChain<br>{<br>  [SSKeychain setPassword:@”shareData” forService:@”myservice” account:@”jiangbin”];<br>}<br>Example2读取数据</li>
+<li>(IBAction)getByKeychain:(id)sender<br>{<br>  NSString *myData = [SSKeychain passwordForService:@”myservice” account:@”jiangbin”];<br>}<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">**(4)App Groups**  </span><br><span class="line">iOS8之后苹果加入了App Groups功能，应用程序之间可以通过同一个group来共享资源，app group可以通过NSUserDefaults进行小量数据的共享，如果需要共享较大的文件可以通过NSFileCoordinator、NSFilePresenter等方式。</span><br><span class="line">开启app groups，需要添加一个group name，app之间通过这个group共享数据：</span><br><span class="line"></span><br><span class="line">**App Groups** </span><br><span class="line"></span><br><span class="line">Example1根据group name设置内容：</span><br></pre></td></tr></table></figure></li>
+<li>(void)setAppGroup<br>{<br>  NSUserDefaults *myDefaults = [[NSUserDefaults alloc]<pre><code>initWithSuiteName:@&quot;group.com.jiangbin.SharedData&quot;];</code></pre>  [myDefaults setObject:@”shared data” forKey:@”mykey”];<br>}<br>Example2根据group name读取数据</li>
+<li>(void)getByAppGroup<br>{<br>  NSUserDefaults *myDefaults = [[NSUserDefaults alloc]<pre><code>initWithSuiteName:@&quot;group.com.jiangbin.SharedData&quot;];</code></pre>  NSString *content = [myDefaults objectForKey:@”mykey”];<br>}<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">**8.大数据的Top key算法**  </span><br><span class="line">　 **问题描述**：有N(N&gt;&gt;10000)个整数,求出其中的前K个最大的数。（称作Top k或者Top 10）    </span><br><span class="line">　　**问题分析**：由于(1)输入的大量数据；(2)只要前K个，对整个输入数据的保存和排序是相当的不可取的。 可以利用数据结构的最小堆来处理该问题。  </span><br><span class="line">最小堆如图所示，对于每个非叶子节点的数值，一定不大于孩子节点的数值。这样可用含有K个节点的最小堆来保存K个目前的最大值(当然根节点是其中的最小数值)。</span><br><span class="line">每次有数据输入的时候可以先与根节点比较。若不大于根节点，则舍弃；否则用新数值替换根节点数值。并进行最小堆的调整。</span><br></pre></td></tr></table></figure>
+#include&lt;stdio.h&gt;<br>int n;  ///数字个数，n很大(n&gt;10000)<br>int dui[10];<br>#define K 10    ///Top K,K的取值</li>
+</ul>
+<p>void create_dui();　　///建堆<br>void UpToDown(int);　　///从上到下调整<br>int main()<br>{<br>    int i;<br>    int tmp;<br>    while(scanf(“%d”,&amp;n)!=EOF)<br>    {<br>        for(i=1;i&lt;=K;i++) ///先输入K个<br>            scanf(“%d”,&amp;dui[i]);<br>        create_dui();  ///建小顶堆<br>        for(i=K+1;i&lt;=n;i++)<br>        {<br>            scanf(“%d”,&amp;tmp);<br>            if(tmp&gt;dui[1])  ///只有大于根节点才处理<br>            {<br>                dui[1]=tmp;<br>                UpToDown(1);    ///向下调整堆<br>            }<br>        }<br>    }<br>    return 1;<br>}</p>
+<p>void create_dui()<br>{<br>    int i;<br>    int pos=K/2;      ///从末尾数，第一个非叶节点的位置K/2<br>    for(i=pos;i&gt;=1;i–)<br>        UpToDown(i);<br>}</p>
+<p>void UpToDown(int i)<br>{<br>    int t1,t2,tmp,pos;<br>    t1=2*i; ///左孩子(存在的话)<br>    t2=t1+1;    ///右孩子(存在的话)<br>    if(t1&gt;K)    ///无孩子节点<br>        return;<br>    else<br>    {<br>        if(t2&gt;K)  ///只有左孩子<br>            pos=t1;<br>        else<br>            pos=dui[t1]&gt;dui[t2]? t2:t1;</p>
+<pre><code>    if(dui[i]&gt;dui[pos]) ///pos保存在子孩子中，数值较小者的位置
+    {
+        tmp=dui[i];dui[i]=dui[pos];dui[pos]=tmp;
+        UpToDown(pos);
+    }
+}</code></pre><p>}</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">[链接](http:&#x2F;&#x2F;www.cnblogs.com&#x2F;xudong-bupt&#x2F;archive&#x2F;2013&#x2F;03&#x2F;20&#x2F;2971262.html)  </span><br><span class="line"></span><br><span class="line">**9.如何计算主线程耗时**   </span><br><span class="line">利用runloop的开始时间和结束时间  </span><br><span class="line"></span><br><span class="line">**10.如何测帧率，原理是什么**  </span><br><span class="line">cadisplaylink的刷新频率等于屏幕的刷新频率，利用cadisplaylink的timerstamp属性计算出两次刷新之间的间隔，然后倒数即为此时的帧数  </span><br><span class="line"></span><br><span class="line">**11.tableView的机制优化**    </span><br><span class="line"></span><br><span class="line">**12.热修复除了jspatch还用过什么**  </span><br><span class="line">waxpatch（用lua来动态调用oc）  </span><br><span class="line"></span><br><span class="line">**13.查找算法**  </span><br><span class="line">1.顺序查找 2.分查找 3.插值查找 4.斐波拉契查找 5.分块查找 6.哈希查找 7.树查找（B+，红黑树）   </span><br><span class="line"></span><br><span class="line">**14.查重算法**   </span><br><span class="line">单数组查重去重：  </span><br><span class="line">1.最基本的去重方法  </span><br><span class="line">思路：定义一个新数组，并存放原数组的第一个元素，然后将元素组一一和新数组的元素对比，若不同则存放在新数组中。</span><br></pre></td></tr></table></figure>
+<p>function unique(arr){<br>　　var res = [arr[0]];<br>　　for(var i=1;i&lt;arr.length;i++){<br>　　　　var repeat = false;<br>　　　　for(var j=0;j&lt;res.length;j++){<br>　　　　　　if(arr[i] == res[j]){<br>　　　　　　　　repeat = true;<br>　　　　　　　　break;<br>　　　　　　}<br>　　　　}<br>　　　　if(!repeat){<br>　　　　　　res.push(arr[i]);<br>　　　　}<br>　　}<br>　　return res;<br>}</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">2.先排序在去重  </span><br><span class="line">思路：先将原数组排序，在与相邻的进行比较，如果不同则存入新数组</span><br></pre></td></tr></table></figure>
+<p>function unique(arr){<br>　　var arr2 = arr.sort();<br>　　var res = [arr2[0]];<br>　　for(var i=1;i&lt;arr2.length;i++){<br>　　　　if(arr2[i] !== res[res.length-1]){<br>　　　　　　res.push(arr2[i]);<br>　　　　}<br>　　}<br>　　return res;<br>}</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">3.利用对象的属性去重（推荐）  </span><br><span class="line">思路：每次取出原数组的元素，然后再对象中访问这个属性，如果存在就说明重复</span><br></pre></td></tr></table></figure>
+<p>function unique(arr){<br>　　var res =[];<br>　　var json = {};<br>　　for(var i=0;i&lt;arr.length;i++){<br>　　　　if(!json[arr[i]]){<br>　　　　　　res.push(arr[i]);<br>　　　　　　json[arr[i]] = 1;<br>　　　　}<br>　　}<br>　　return res;<br>}</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">4.利用下标查询</span><br></pre></td></tr></table></figure>
+<p>function unique(arr){<br>   　var newArr = [arr[0]];<br>  　　for(var i=1;i&lt;arr.length;i++){<br>　　　if(newArr.indexOf(arr[i]) == -1){<br>          　　 newArr.push(arr[i]);<br>    　　  }<br>        }<br>        return newArr;<br> }</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">两个组查重去重：   </span><br><span class="line">1.最基本的去重方法:  </span><br><span class="line">两个for循环  </span><br><span class="line"></span><br><span class="line">2.先将一个数组写入字典，在一个for循环去字典查找:</span><br></pre></td></tr></table></figure>
+<pre><code>var arr1 = [&quot;i&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;, &quot;f&quot;,&quot;x&quot;]; //数组A  
+var arr2 = [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;, &quot;f&quot;, &quot;g&quot;];//数组B  
+
+var temp = []; 
+var temparray = [];
+
+for (var i = 0; i &lt; arr2.length; i++) {  
+    temp[arr2[i]] = true; 
+};  
+for (var i = 0; i &lt; arr1.length; i++) {  
+    if (!temp[arr1[i]]) {  
+        temparray.push(arr1[i]);
+    } ;  
+};  </code></pre><pre><code>
+**15.TCP为什么可靠，UDP如何转为可靠**  
+TCP通过一些方式来提供可靠性  
+&gt;1.**合理长度：**应用数据被分割成TCP认为最合适发送的数据块。这个和UPD完全不同，应用程序产生的数据报长度将保持不变。  
+&gt;2.**超时重发：**当TCP发出一个段后，它启动一个定时器，等待目的端确认收到这个报文段，若不能及时收到一个确认，将重发这个报文段。  
+&gt;3.**回复确认：**当TCP收到发自TCP连接另一端的数据，它将发送一个确认。这个确认不是立即发送，通常将推迟几分之一秒（之所以推迟，可能是要对包做完成校验）。   
+&gt;4.**完整性校验**：TCP将保持它首部和数据的检验和。这是一个端到端的检验和，目的是检测数据在传输过程中的任何变化。如果收到段的检验和有差错，TCP将丢弃这个报文段和不确认收到此报文段（希望发送端超时并重发）。  
+&gt;5.**失序重排：**既然TCP报文段作为IP数据报来传输，而IP数据报的到达可能会失序，因此TCP报文段的到达也可能会失序。如果必要，TCP将对收到的数据进行重新排序，将收到的数据以正确的顺序交给应用层。  
+&gt;6.**重复丢弃：**既然IP数据报会发生重复，TCP接受段必须丢弃重复数据  
+&gt;7.**流量控制：**TCP还能提供流量控制。TCP连接的每一方都有固定大小的缓冲空间。tcp的接收端只允许另一端发送接收端缓冲区所能接纳的数据。这将防止较快主机致使较慢主机的缓冲区溢出   
+
+TCP使用流量控制协议是可变大小的滑动窗口协议  
+
+**16.NSObject中的hash方法什么时候调用**  
+一个对象在用作key值时，其hash方法会被调用，用以生成一个唯一标识符，NSDictionary需要根据唯一key值（根据hash算法生成的值）查找对象，NSSet需要根据hash值来确保过滤掉重复的对象。作为key的对象还要实现NSCopying协议，需要重写isEqual方法和hash方法  
+
+**编译优化会消耗什么**  
+精简指令后跨平台性减弱，比如少了armv7指令集  
+
+**18.iOS签名机制**  
+首先要了解非对称加密和摘要加密算法  
+&gt;a.本地机器上传CRS证书，证书中包含用户信息和公钥  
+&gt;b.苹果拿到证书之后会用苹果的私钥进行加密生成一个证书，我们可以下载证书安装，由于这个证书中有我本地的公钥信息，故可以直接绑定，在keychain中可以看到一个对应的本地秘钥  
+&gt;c.苹果在拿到证书之后，会利用证书生成描述文件，描述文件中又加入了uuid、bundle和摘要等信息  
+&gt;d.我们下载描述文件到本地安装，此时描述文件又会和本地秘钥进行关联，打包的时候要选择描述文件本质是选择打包是的密钥来进行加密。  
+&gt;e.打包ipa完成后，ipa解压后有个codesignure文件里面包含签名信息
+&gt;f.校验ipa的合法性：iOS设备自带苹果公钥，会对描述文件进行解密，校验bundle，授权等信息  
+&gt;g.校验代码的合法性：取出描述文件中开发者的公钥对加密信息进行解密，校验程序中所有文件（不包括framework，因为framework和APP一样，中已经包含codesignure文件）的摘要  
+
+[链接](https://segmentfault.com/a/1190000004144556)  
+
+**19.crash内部原理**  
+[链接](http://www.max1ao.com/xcode8shang-jia-appda-keng/)  
+
+**20.类方法和对象方法的区别**  
+
+**21.NSDictionary的实现原理**  
+哈希表  
+
+**22.关联对象的内存分布**  
+所有关联对象都由AssociationsManager管理，AssociationManager里面是一个静态AssociationHashMap来存储所有的关联对象的。这相当于把所有对象的关联对象都存在一个全局map里面。而map的key是这个对象的指针地址（任意两个不同对象的指针地址一定是不同的），而这个map的value又是另外一个associationHashMap，里面保存了关联对象的kv对。runtime的销毁对象函数objc_destructInstance里面会判断这个对象有没有关联对象，如果有，会调用_object_remove_assocations做关联对象的清理工作  
+[链接](http://blog.csdn.net/zyx196/article/details/50816976)  
+
+**23.事件响应链**  
+1. 先判断自己是否能够接收触摸事件，如果能再继续往下判断，
+2. 再判断触摸的当前点在不在自己身上 
+3. 如果在自己身上，它会从后往前遍历子控件，遍历出每一个子控件后，重复前面两个步骤。
+4. 如果没有符合条件的子控件，那么它自己就是最合适的view  
+
+**事件传递与响应的完整过程是什么？**  
+1. 现将事件对象由上往下传递(由父控件传递给子控件)，找到合适的控件来处理这个事件。
+2. 调用最合适控件的touches...方法  
+3. 如果调用了[super touches...]；就会将事件顺着响应者链条往上传递，传递给上一个响应者  
+4. 接着就会调用上一个响应者的touches...方法  
+
+如何判断上一个响应者  
+如果当前这个view是控制器的view，那么控制器就是上一个响应者  
+如果当前这个view不是控制器的view，那么父控件就是上一个响应者  
+
+**24.如何编译优化，加快编译速度**   
+**1. 增加Xcode执行的线程数**    
+可以根据自己Mac性能，更改线程数设置5：`defaults write com.apple.Xcode  PBXNumberOfParallelBuildSubtasks 5 ` 
+另外也有一个设置可以开启：`defaults write com.apple.dt.Xcode ShowBuildOperationDuration YES`  Xcode默认使用与CPU核数相同的线程来进行编译，但由于编译过程中的IO操作往往比CPU运算要多，因此适当的提升线程数可以在一定程度上加快编译速度  
+**2. 将Debug Information Format改为DWARF**  
+在工程对应Target的build Setting中，找到Debug Information Format这项，将debug时的SWARF with DSYM file改为DWARF。 
+如图：  
+
+这一项设置的是是否将调试信息加入到可执行文件中，改为DWARF后，如果程序崩溃，将无法输出崩溃位置对应的函数堆栈，但由于Debug模式下可以在XCode中查看调试信息，所以改为DWARF影响并不大。这一项更改完之后，可以大幅提升编译速度。
+比如在目前本人负责的项目中，由于依赖了多个Target，所以需要在每个Target的Debug Information Format设置为DWARF。顺便提一下，如果通过Cocoapod引入第三方则Debug Information Format默认就是设置为DWARF的。
+SDWebImage通过Cocoapods Debug Information Format的默认设置
+
+注意：将Debug Information Format改为DWARF之后，会导致在Debug窗口无法查看相关类类型的成员变量的值。当需要查看这些值时，可以将Debug Information Format改回DWARF with dSYM file，clean（必须）之后重新编译即可。  
+
+**3.将Build Active Architecture Only改为Yes**
+在工程对应Target的Build Settings中，找到Build Active Architecture Only这一项，将Debug时的NO改为Yes。
+
+
+这一项设置的是是否仅编译当前架构的版本，如果为NO，会编译所有架构的版本。需要注意的是，此选项在Release模式下必须为NO`，否则发布的ipa在部分设备上将不能运行。这一项更改完之后，可以显著提高编译速度。
+
+**4.设计编译优化等级**  
+不要再项目中或者静态库中使用-O4，因为这会让Clang链接Link Time Optimizations (LTO)使得编译更慢，通常使用-O3。
+
+
+注意：在设置编译优化之后，XCode断点和调试信息会不正常，所以一般静态库或者其他Target[这样设置](http://815222418.iteye.com/blog/2317439)。
+
+**25.swift较OC的优势**  
+语法、新的编程范式的支持、类型安全、函数式、泛型、面向协议（POP），还有一定的模式匹配能力  
+
+**26.initilaize和load方法**  
+**区别**：  
+load是只要类所在文件被引用就会被调用，而initialize是在类或者其子类的第一个方法被调用前调用。所以如果类没有被引用进项目，就不会有load调用；但即使类文件被引用进来，但是没有使用，那么initialize也不会被调用。  
+**相同：**  
+方法只会被调用一次(其实这是相对runtime来说的，后边会进一步解释)  
+1. load和initialize方法都会在实例化对象之前调用，以main函数为分水岭，前者在main函数之前调用，后者在之后调用。这两个方法会被自动调用，不能手动调用它们。  
+2. load和initialize方法都不用显示的调用父类的方法而是自动调用，即使子类没有initialize方法也会调用父类的方法，而load方法则不会调用父类  
+3. load方法通常用来进行method method Swizzle ,initialize方法一般用于初始化全局变量或静态变量。  
+4. load和intialize 方法内部使用了锁，因此它们是线程安全的。实现是要尽可能保持简单，避免阻塞线程，不要再使用锁。
+
+[链接](http://www.cnblogs.com/ider/archive/2012/09/29/objective_c_load_vs_initialize.html)  
+
+**27.oc消息转发机制**  
+总体来说会有3次转发的机会  
+在一个函数找不到是，oc提供了三种方法去补救：  
+&gt;1.调用resolveInstanceMethod给个机会让类添加这个函数的实现  
+&gt;2.调用forwardingTargetForSelector让别的对象去执行这个函数  
+&gt;3.调用forwardInvocation（函数执行器）灵活的将目标函数以其他形式执行  
+
+**28.NSInvocation使用**  
+[链接](https://www.jianshu.com/p/177e44a411db)  
+
+**29.weak实现原理**  
+[链接](https://www.jianshu.com/p/13c4fb1cedea)  
+
+**30.GCD和NSOPeration的实际应用场景**  
+**GCD：**  
+&gt;回主线程   
+&gt;after   
+&gt;group完成顺序请求  
+
+**NSOPeration**
+&gt;数据库读写  
+&gt;注册服务等需要控制状态和顺序的操作
+&gt;网络请求中控制顺序  
+
+**31.iOS中通知的注意事项** 
+&gt;发送通知和接收通知一般在一个线程中，即使将接收通知的代码写在主队列中，打印出来会发现线程和发送是在同一个线程；  
+&gt;但可以用addObserverForName:object:usingBlock:函数切换到其他线程</code></pre>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/16/%E6%80%BB%E7%BB%93%E4%B8%80/" rel="next" title="总结一">
+                <i class="fa fa-chevron-left"></i> 总结一
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/05/20/%E4%B8%89%E6%80%BB%E7%BB%93/" rel="prev" title="三总结">
+                三总结 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Jaylan lu</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jaylan lu</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="###死锁所谓死锁是指多个进程因竞争资源而造成的一种僵局（互相等待），若无外力作用，这些进程都将无法向前推进。####死锁产生的原因：系统资源的竞争通常系统中拥有的不可剥夺资源，其数量不足以满足多个进程运行的需要，使得进程在运行过程中，会因争夺资源而陷入僵局。只有对不可剥夺资源的竞争 才可能产生死锁，对可剥夺资源的竞争是不会引起死锁的。 进程推进顺序非法进程在运行过程中，请求和释放资源的顺序不当，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="题集">
+<meta property="og:url" content="https://lujaylan.github.io/2019/04/30/%E9%A2%98%E9%9B%86/index.html">
+<meta property="og:site_name" content="卤蛋的博客">
+<meta property="og:description" content="###死锁所谓死锁是指多个进程因竞争资源而造成的一种僵局（互相等待），若无外力作用，这些进程都将无法向前推进。####死锁产生的原因：系统资源的竞争通常系统中拥有的不可剥夺资源，其数量不足以满足多个进程运行的需要，使得进程在运行过程中，会因争夺资源而陷入僵局。只有对不可剥夺资源的竞争 才可能产生死锁，对可剥夺资源的竞争是不会引起死锁的。 进程推进顺序非法进程在运行过程中，请求和释放资源的顺序不当，">
+<meta property="article:published_time" content="2019-04-30T07:39:18.000Z">
+<meta property="article:modified_time" content="2020-05-09T15:08:56.335Z">
+<meta property="article:author" content="Jaylan lu">
+<meta property="article:tag" content="iOS">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://lujaylan.github.io/2019/04/30/题集/"/>
+
+
+
+
+
+  <title>题集 | 卤蛋的博客</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">卤蛋的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">勤学如春起之苗，不见其增，日有所长；辍学如磨刀之石，不见其损，日有所亏</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lujaylan.github.io/2019/04/30/%E9%A2%98%E9%9B%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jaylan lu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="卤蛋的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">题集</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-30T15:39:18+08:00">
+                2019-04-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>###<a href="http://c.biancheng.net/cpp/html/2604.html" target="_blank" rel="noopener">死锁</a><br>所谓死锁是指多个进程因竞争资源而造成的一种僵局（互相等待），若无外力作用，这些进程都将无法向前推进。<br>####死锁产生的原因：<br><strong>系统资源的竞争</strong><br>通常系统中拥有的不可剥夺资源，其数量不足以满足多个进程运行的需要，使得进程在运行过程中，会因争夺资源而陷入僵局。<br>只有对不可剥夺资源的竞争 才可能产生死锁，对可剥夺资源的竞争是不会引起死锁的。</p>
+<p><strong>进程推进顺序非法</strong><br>进程在运行过程中，请求和释放资源的顺序不当，也同样会导致死锁。<br>例如，并发进程 P1、P2分别保持了资源R1、R2，而进程P1申请资源R2，进程P2申请资源R1时，两者都 会因为所需资源被占用而阻塞。  </p>
+<p>信号量使用不当也会造成死锁。进程间互相彼此等待对方发来的消息，结果也使得这些进程间无法继续向前推进。   </p>
+<p>####死锁产生的必要条件<br>产生死锁必须同时满足以下四个条件，只要其中任意一个不成立，死锁就不会发生。<br><strong>互斥条件：</strong>进程要求对所分配资源进行排他性控制，即在一段时间内某资源仅为一个进程所占有。此时若有其他进程请求该资源，则请求进程只能等待。<br><strong>不可剥夺条件：</strong>进程所获得的资源在未使用完毕之前，不能被其他进程强行夺走，即只能由获得该资源的进程自己来释放。<br><strong>请求和保持条件：</strong>又称为部件分配条件。进程每次申请它所需要的一部分资源，在等待新资源的同时，进程继续占有已分配到的资源。<br><strong>循环等待条件：</strong>存在一种进程资源的循环等待链，链中每个进程已获取得的资源同时被链中下一个进程所请求。即存在一个处于等待状态的进程集合{P<sub>1</sub>,P<sub>2</sub>,…,P<sub>n</sub>}，其中P<sub>i</sub>等待的资源被P<sub>i+1</sub>(i=0,1,…,n-1),P<sub>n</sub>等待资源被P<sub>0</sub>占有。<br>####<a href="http://c.biancheng.net/cpp/html/2605.html" target="_blank" rel="noopener">死锁处理策略</a>：</p>
+<blockquote>
+<p><strong>1.<a href="http://c.biancheng.net/cpp/html/2606.html" target="_blank" rel="noopener">预防死锁</a>：</strong>设置某些限制条件，破坏产生死锁的四个必要条件中的一个或者几个。<br><strong>2.<a href="http://c.biancheng.net/cpp/html/2606.html" target="_blank" rel="noopener">避免死锁</a>：</strong>在资源的动态分配过程中，用某种方法防止系统进入不安全状态，银行家算法是著名的死锁避免算法。<br><strong>3.<a href="http://c.biancheng.net/cpp/html/2607.html" target="_blank" rel="noopener">死锁的检测及解除</a>：</strong>无须采取任何限制性措施，允许进程在运行过程中发生死锁，通过系统的检测机制及时地检测出死锁的发生，然后采取某种措施解除死锁。死锁的检测可利用资源分配图来描述。死锁的解除主要方法如下：<br>1.资源剥夺法。<br>2.撤销进程法。<br>3.进程回退法。</p>
+</blockquote>
+<p>###进程管理<br>####<a href="http://c.biancheng.net/cpp/html/2588.html" target="_blank" rel="noopener">进程</a><br><strong>进程（Process）</strong>是计算机中已运行程序的实体，是具有独立功能的程序在一个数据集合上运行的过程，它是系统进行资源分配和调度的一个独立单位。<br>#####进程的特征<br>进程是有多程序并发执行而引起的。进程的基本特征是对比单个程序的顺序执行提出的，也是对进程管理提出的基本要求。</p>
+<blockquote>
+<p>1.动态性<br>2.并发性<br>3.独立性<br>4.异步性<br>5.结构性  </p>
+</blockquote>
+<p>####线程和进程的区别<br><strong>调度</strong><br>在传统系统中，拥有资源的独立调度的基本单位是进程。引入线程后，线程是独立调度的基本单位，进程是拥有资源的基本单位。在同一个进程中，线程的切换不会导致进程的切换，在不同进程中，线程的切换会导致进程的切换。<br><strong>拥有资源</strong><br>不论是在传统还是引入进程的操作系统，进程都是拥有资源的基本单位，线程不拥有资源（也有一点必不可少的资源），但线程可以共享其隶属进程的系统资源。<br><strong>并发性</strong><br>再引入线程的操作系统中，不仅进程可以并发执行，并且同一个进程内的多个线程页可以并发执行，从而操作系统具有更好的并发性，大大提高了系统的吞吐量。<br><strong>系统开销</strong><br>创建和撤销进程时，系统都要为之分配和收回资源，如内存空间、I/O设备等，因此操作系统所付出的开销远大于创建或撤销线程的开销。类似的，在进程进行切换时，涉及当前执行进程CPU环境的保存以及新调度的进程CPU环境的设置；而线程切换时只需保持和设置少量寄存器内容，因此开销很小。另外，由于同一个进程内的多个线程共享进程的地址空间，因此这些线程之间的同步与通信比较容易实现，甚至无需操作系统的干预。<br><strong>地址空间和其他资源</strong><br>进程的地址空间之间相互独立，同一个进程的各线程间共享进程的资源，某进程内的线程对于其他进程不可见。<br><strong>通信方法</strong><br>进程间通信需要借助操作系统，而线程间可以直接读/写进程数据段来（如全局变量）通信。</p>
+<p>###HTTPS加密<br><strong>方式一：</strong>  </p>
+<blockquote>
+<p>1.-&gt;client hello ssl指定版本 加密组件列表<br>2.&lt;-server hello ssl指定版本 加密组件（从客户端加密组件筛选）<br>3.&lt;-certificate  服务器的公开密钥<br>4.&lt;-server hello down 初次ssl 握手完成<br>5.-&gt;clienKeyExchange 用服务器公开密钥加密的pre-master secret随机串<br>6.-&gt;change cipher Spec 以后通信数据用改随机串加密<br>7.-&gt;finish<br>8.&lt;-change cipher spec<br>9.&lt;-finish<br>10.-&gt;application data(http 请求)<br>11.&lt;-application data (http 响应)<br>12.-&gt;alert:warning ,close notify  </p>
+</blockquote>
+<p><strong>方式二：</strong></p>
+<blockquote>
+<p>1.客户端的浏览器向服务器传送客户端SSL协议的版本号，加密算法的种类，产生的随机数，以及其他服务器和客户端之间通讯所需要的各种信息</p>
+</blockquote>
+<p>###<a href="http://c.biancheng.net/cpp/biancheng/view/2970.html" target="_blank" rel="noopener">C++类成员的访问权限</a></p>
+<p><strong>成员访问限定符</strong><br>public &gt; protected &gt; private<br>默认private</p>
+<p>在类的内部（定义类的代码内部），无论成员被声明为public、protected、还是private，都可以相互访问，没有访问权的限制。</p>
+<p>在类的外部（定义类的代码之外），只能通过对象访问成员，并且只能访问public属性的成员，不能访问private、protected属性的成员。</p>
+<p>###<a href="http://c.biancheng.net/cpp/biancheng/view/2984.html" target="_blank" rel="noopener">C++继承权限和继承方式</a><br>一般继承语法：  </p>
+<pre>
+class 派生类名:［继承方式］ 基类名{       
+    派生类新增加的成员       
+};       
+</pre>
+
+<p>继承方式限定了基类成员在派生类中的访问权限，如果不写，默认是private  </p>
+<p>public成员可以通过对象来访问，private、protected成员不能通过对象访问。<br>基类中的protected成员可以在派生类中使用，而基类中的private成员不能在派生类中使用。</p>
+<p>基类成员在派生类中的访问权限不得高于继承方式中指定的访问权限<br>不管继承方式如何，private成员在派生类中始终不能使用（不能在派生类的成员函数中访问或调用）。  </p>
+<p>如果希望基类的成员能够别派生类继承并且毫无保障地使用，那么这些成员只能声明为public或protected；只有那些不希望在派生类中使用的成员才声明为private。  </p>
+<p>如果希望基类的成员既不向外暴露（不能通过对象访问），还能在派生类中使用，那么只能声明为protected。</p>
+<p>在派生类中访问基类private成员的唯一方法就是借助基类的非private成员函数。  </p>
+<p>####改变访问权限<br>使用using关键字可以改变基类成员在派生类中的访问权限  </p>
+<p>注意：using只能改变基类中public和protected成员的访问权限，不能改变private成员的访问权限，因为基类中private成员在派生类中是不可见的，根本不能使用，所以基类中的private成员在派生类中无论如何都不能访问。</p>
+<pre>
+class People{
+  protected:
+    char *m_name;
+    int m_age;
+};
+
+class Student: public People{
+   public:
+      using People::m_name; 
+      using People::m_age;
+    }
+</pre>
+
+
+
+
+<p>###快排</p>
+<p>int partition(int a[],int low,int high) {<br>   int mid = a[low];<br>   while (low &lt; high){<br>           while（low&lt;hight &amp;&amp; mid &lt;= a[high]）<br>               high –;<br>           a[low]=a[high];<br>           while(low&lt;high &amp;&amp; mid &gt;= a[low])<br>               low ++;<br>           a[high] = a[low];<br>   }<br>   a[low]=mid;<br>   return a[low];<br>} </p>
+<p>void quickSort(int a[],int low,int high){<br>    if(high - low &lt; 2)<br>      return;</p>
+<pre><code>int val = partition(a,low,high);
+quickSort(a,low,var-1);
+quickSort(a,var +1,high);</code></pre><p>}</p>
+<p>###设计多线程程序编程的简单规则</p>
+<blockquote>
+<p>1.找到真正不相干的任务<br>2.尽可能的在最高层进行并行化<br>3.尽早针对众核趋势做好可伸缩性的规划<br>4.尽可能利用已有线程的安全库<br>5.使用合适的多线程模型<br>6.永远不要假设具体的执行顺序<br>7.尽可能使用线程本地参差或者对特定数据加锁<br>8.敢于更换更易并行化的算法</p>
+</blockquote>
+<p>###SD<br>支持图片加载与缓存管理<br>一个异步的图片加载器<br>一个异步的内存+磁盘图片缓存<br>支持git图片<br>支后台图片压缩处理<br>确保同一个url的图片不被下载多次<br>确保虚假的URL不会被反复加载<br>确保下载及缓存时，主线程不被阻塞  </p>
+<p>下载的核心其实就是利用NSURLConnection对象来加载数据。每个图片的下载都由一个Operation操作来完成。并将这些操作放到一个操作队列中。这样可以现实图片的并发下载。</p>
+<p>更多的支持h5特性<br>官方宣传的高达60fps的滚动刷新率以及内置手势<br>Safari 相同的JavaScript引擎<br>将UIWebViewDelegate和UIWebView拆分成了14个类和三个协议<br>增加了加载进度熟悉</p>
+<p>###设计模式的六大原则（凯迪合理介意-开迪合里接依）<br><strong>开闭</strong>原则：对扩展开放，对修改关闭<br><strong>迪米特</strong>法则（最少知道原则）：一个实体保持相对独立<br><strong>合成复用</strong>原则：任何尽量使用合成/聚合的方式，而不是继承<br><strong>里氏替换</strong>原则：任何基类可以出现的地方，子类一定可以出现<br><strong>接口隔离</strong>原则：使用多个隔离的接口，比使用单个接口要好<br><strong>依赖倒转</strong>原则：针对接口编程，依赖于抽象而不依赖于具体    </p>
+<p>###Cocoa框架<br><strong>Cocoa</strong><br>Cocoa是OS X和iOS操作系统的程序的运行环境  </p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/29/iOS%E5%BC%80%E5%8F%91%E9%AB%98%E6%89%8B%E8%AF%BE%E7%AC%94%E8%AE%B0/" rel="next" title="iOS开发高手课笔记">
+                <i class="fa fa-chevron-left"></i> iOS开发高手课笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/05/16/%E6%80%BB%E7%BB%93%E4%B8%80/" rel="prev" title="总结一">
+                总结一 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Jaylan lu</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jaylan lu</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

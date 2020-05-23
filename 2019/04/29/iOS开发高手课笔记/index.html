@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="###锚定一个点，然后在这个点上深耕####技术看似过眼云烟，实则是递进式推动着移动技术的演进热修复、动态化和大前端的底层技术都是JavaScriptCore这样的JavaScript虚拟技术；大前端和Flutter的渲染，使用的都是WebCore中的Skia这样的渲染引擎。组件化是将上层业务隔离开，下层提供通用能力的一种架构模式。这样上层业务团队可以分开从而减少团队沟通成本，下层的通用性又反过来">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS开发高手课笔记">
+<meta property="og:url" content="https://lujaylan.github.io/2019/04/29/iOS%E5%BC%80%E5%8F%91%E9%AB%98%E6%89%8B%E8%AF%BE%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="卤蛋的博客">
+<meta property="og:description" content="###锚定一个点，然后在这个点上深耕####技术看似过眼云烟，实则是递进式推动着移动技术的演进热修复、动态化和大前端的底层技术都是JavaScriptCore这样的JavaScript虚拟技术；大前端和Flutter的渲染，使用的都是WebCore中的Skia这样的渲染引擎。组件化是将上层业务隔离开，下层提供通用能力的一种架构模式。这样上层业务团队可以分开从而减少团队沟通成本，下层的通用性又反过来">
+<meta property="og:image" content="https://github.com/jaylanlu/Blog/raw/master/blogImage/%E5%9F%BA%E7%A1%80%E6%A8%A1%E5%9D%97.png">
+<meta property="og:image" content="https://github.com/jaylanlu/Blog/raw/master/blogImage/%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91.png">
+<meta property="og:image" content="https://github.com/jaylanlu/Blog/raw/master/blogImage/%E5%8E%9F%E7%90%86%E6%A8%A1%E5%9D%97.png">
+<meta property="og:image" content="https://github.com/jaylanlu/Blog/raw/master/blogImage/%E5%8E%9F%E7%94%9F%E4%B8%8E%E5%89%8D%E7%AB%AF.png">
+<meta property="og:image" content="https://github.com/jaylanlu/Blog/raw/master/blogImage/%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB.png">
+<meta property="article:published_time" content="2019-04-29T10:07:23.000Z">
+<meta property="article:modified_time" content="2020-05-09T15:08:56.337Z">
+<meta property="article:author" content="Jaylan lu">
+<meta property="article:tag" content="iOS">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://github.com/jaylanlu/Blog/raw/master/blogImage/%E5%9F%BA%E7%A1%80%E6%A8%A1%E5%9D%97.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://lujaylan.github.io/2019/04/29/iOS开发高手课笔记/"/>
+
+
+
+
+
+  <title>iOS开发高手课笔记 | 卤蛋的博客</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">卤蛋的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">勤学如春起之苗，不见其增，日有所长；辍学如磨刀之石，不见其损，日有所亏</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lujaylan.github.io/2019/04/29/iOS%E5%BC%80%E5%8F%91%E9%AB%98%E6%89%8B%E8%AF%BE%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jaylan lu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="卤蛋的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">iOS开发高手课笔记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-29T18:07:23+08:00">
+                2019-04-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>###锚定一个点，然后在这个点上深耕<br>####技术看似过眼云烟，实则是递进式推动着移动技术的演进<br>热修复、动态化和大前端的底层技术都是JavaScriptCore这样的JavaScript虚拟技术；<br>大前端和Flutter的渲染，使用的都是WebCore中的Skia这样的渲染引擎。<br>组件化是将上层业务隔离开，下层提供通用能力的一种架构模式。这样上层业务团队可以分开从而减少团队沟通成本，下层的通用性又反过来提高各个业务团队的开发效率。核心思想是解耦。<br>热修复的核心引擎主要就是JavaScriptCore,它要求开发者使用JavaScript来编写代码。而为了方便原生开发者，热修复最大的卖点就是将原生Objective-C代码转成JavaScript代码然后用JavaScriptScore去解释。这一代码转换过程其实就是通过编译技术来实现的。<br>同时，在目前正流行的这波大前端和小程序浪潮中，各种大前端技术都对Web标准做了大量限制，定义了自己的规范模板。这些自定义的模板最终都会使用 Babel 这样的前端编译技术将其编译成 JavaScrip<br>代码，然后再交给 JavaScriptCore 解释调用原生渲染。  </p>
+<p>###建立自己的iOS开发知识体系<br>iOS的知识体系，包括基础、原理、应用开发、原生与前端。好的知识体系首先需要能起到指导iOS应用的开发和发现并解决开发问题的作用。所以四大模块的设置初衷是：<br>基础模块的作用，就是让你具有基本的发现并解决开发问题的能力；<br>应用开发模块，就是用来指导应用开发的；<br>好的知识体系还要能够应对未来变革，也就是需要打好底子掌握原理、理清规律，看清方向。所以原理模块的作用就是帮你掌握原理和理清规律，而原生与前端模块会助你看清方向。<br>####基础模块<br>按照APP的开发流程（开发、调试测试、发布、上线）进行划分，如图所示。<br><img src="https://github.com/jaylanlu/Blog/raw/master/blogImage/%E5%9F%BA%E7%A1%80%E6%A8%A1%E5%9D%97.png" alt="Aaron Swartz"></p>
+<p>####应用开发<br>需要关注的就是一些经典库。和视觉表现相关的GUI框架知识掌握好了，直接能够让用户感知到你APP的优秀表现。响应式框架、TDD/BDD、编码规范等知识能够让你的开发更规范、更有效率。<br><img src="https://github.com/jaylanlu/Blog/raw/master/blogImage/%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91.png" alt="Aaron Swartz"></p>
+<p>####原理模块<br>主要就是系统内核XNU、AOP、内存管理和编译的知识。这些知识具有很强的通用性，其他任何语言、系统和领域都会涉及到。<br><img src="https://github.com/jaylanlu/Blog/raw/master/blogImage/%E5%8E%9F%E7%90%86%E6%A8%A1%E5%9D%97.png" alt="Aaron Swartz"></p>
+<p>####原生与前端<br>原生还是前端，才是移动应用的未来，谁都没法说清楚，无法选择就都选择。<br>从h5到Flutter，渲染底层图形库都是用Skia。也就是说，这么多年来渲染底层技术就基本没有变过。<br><img src="https://github.com/jaylanlu/Blog/raw/master/blogImage/%E5%8E%9F%E7%94%9F%E4%B8%8E%E5%89%8D%E7%AB%AF.png" alt="Aaron Swartz"></p>
+<p>最后梳理到一起：<br><img src="https://github.com/jaylanlu/Blog/raw/master/blogImage/%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB.png" alt="Aaron Swartz"></p>
+<p>以上知识是需要着重学习的，要将这些知识体系化。在学习知识的道路上要精益求精、求深，基础打牢，以不变应万变。在工作上，要注重开发效率，避免不必要的重复造轮子，理解原理和细节，同时开阔眼界，紧跟技术前沿。<br>不要着急着看到啥就去学啥，有目的、有体系地去学习，效果会更好。及时工作再忙，也要找时间成体系地提升自己的内功，完善自己，然后反哺到工作上，让工作效率和质量达到质的提升，进而从容应对技术的更新迭代。</p>
+<p>###APP启动速度怎么做优化与监控<br><strong>APP启动分为冷启动和热启动</strong><br><strong>冷启动：</strong>APP点击启动前，它的进程不在系统里，需要系统新创建一个进程分配给它启动的情况。这是一次完整的启动过程。<br><strong>热启动：</strong>APP在冷启动后用户将APP退后台，在APP的进程还是在系统里的情况下，用户重新启动进入APP的过程，这个过程做的事非常少。</p>
+<p><strong>APP的启动时间</strong>，指的是从用户点击APP开始，到用户看到第一个界面之间的时间。总结来说，APP的启动主要包括三个阶段：</p>
+<blockquote>
+<p>1.main()函数执行前；<br>2.main()函数执行后；<br>3.首屏渲染完成后。</p>
+</blockquote>
+<p>####main()函数执行前<br><strong>在main()函数执行前，系统主要做下面几件事情：</strong>  </p>
+<blockquote>
+<p>1.加载可执行文件（APP的.o文件的集合）；<br>2.加载动态链接库，进行rebase指针调整和bind符号绑定；<br>3.Objc运行时的初始化处理，包括Objc相关类的注册、category注册、selector唯一性检查等；<br>4.初始化，包括执行+load()方法、attribute((constructor))修饰的函数的调用、创建C++静态全局变量。</p>
+</blockquote>
+<p><strong>相对应的，这个阶段对于启动速度优化来说，可以做的事情包括：</strong>  </p>
+<blockquote>
+<p>1.减少动态库的加载。每个库本身都有依赖关系，苹果公司建议使用更少的动态库，并且建议在使用动态库的数量较多时，尽量将多个动态库进行合并。数量上，苹果公司最多可以支持6个非系统动态库合并为一个。<br>2.减少加载启动后不会去使用的类或者方法。<br>3.+load()方法里的内容可以放到首屏渲染完成后再执行，或使用+initialize()方法替换掉。因为，在一个+load()方法里，进行运行时方法替换操作会带来4毫秒的消耗。不要小看这4毫秒，积少成多，执行+load()方法对启动速度的影响会越来越大。<br>4.控制C++全局变量的数量。</p>
+</blockquote>
+<p>####main()函数执行后<br>main()函数执行后的阶段，指的是从main()函数执行开始，到appDelegate的didFinishLaunchingWithOptions方法里首屏渲染相关方法执行完成。<br><strong>首页的业务代码都是要在这个阶段，也就是首屏渲染前执行的，主要包括了：</strong>  </p>
+<blockquote>
+<p>1.首屏初始化所需配置文件的读写操作；<br>2.首屏列表大数据的读取；<br>3.首屏渲染的大量计算登录；</p>
+</blockquote>
+<p>很多时候开发者会把各种初始化工作都放到这个阶段执行，导致渲染完成滞后。更加优化的开发方式，应该是<strong>从功能上梳理出哪些是首屏渲染必要的初始化功能，哪些是APP启动必要的初始化功能，而哪些只需要在对应功能开始使用是才需要初始化。梳理完成之后，将这些初始化功能分别放到合适的阶段进行。</strong></p>
+<p>###首屏渲染完成后<br><strong>首屏渲染后的这个阶段，主要完成的是</strong>，非首屏其他业务服务模块的初始化、监听的注册、配置文件的读取等。<br>从函数上来看，这个阶段指的就是截止到didFinishLaunchingWithOptions方法作用域内执行首屏渲染之后的所有方法执行完成。简单说的话，这个阶段就是从渲染完成时开始，到didFinishLauchingWithOptions方法作用域结束时结束。<br>这个阶段用户已经能够看到APP的首页信息了，所以优化的优先级排在最后，但是，那些会卡主线程的方法还是需要最优先处理的，不然还是会影响到用户后面的交互操作。  </p>
+<p>明辨了APP启动阶段需要完成的工作后，就可以有的放矢地进行启动速度的优化了。这些优化，包括功能级别和方法级别的启动优化。</p>
+<p>####功能级别的启动优化<br>团队有可能面临启动阶段的代码功能堆积、无规范、难维护的问题。特别是APP业务规模扩大，团队人员水平参差不齐，各种代码问题就会爆发出来，终归需要来次全面治理。<br>功能级别的启动优化，就是要从main()函数执行后的这个阶段下手。<br><strong>优化的思路是：</strong>main()函数开始执行后到首屏渲染完成前只处理首屏相关的业务，其他非首屏业务的初始化、监听注册、配置文件读取等都放到首屏渲染完成后去做。</p>
+<p>####方法级别的启动优化<br>经过功能级别的启动优化，也就是将非首屏业务所需的功能滞后以后，从用户点击APP到看到首屏的时间将会有很大程度的缩短，也就是达到优化APP启动速度的目的。<br>在这之后，进一步需要做的就是检查首屏渲染完成前主线程上有哪些耗时方法，将没必要的耗时方法滞后或异步执行。通常，耗时较长的方法主要发生在计算大量数据的情况下，具体的表现就是加载、编辑、存储图片和文件等资源。<br>但是还有一些其他方法比较耗时，像上面提到的+load()方法，ReactiveCocoa框架没创建一个信号都有6毫秒的耗时。这样稍加不注意的各种信号的创建就都被放在了首屏渲染完成前，是APP启动速度大幅下降，等等。<br>目前APP启动速度的监控主要有两种手段。  </p>
+<p>#####定时抓取主线程上的方法调用堆栈，计算一段时间里各种方法的耗时。<br>Xcode工具套件里自带的Time Profiler 采用的就是这种方式。<br>这种方式的<strong>优点</strong>是，开发类似工具成本不高，能快速开发后集成到你的APP中，以便在真实的环境中进行检查。<br>说道定时抓取，就会涉及到定时间隔的长短问题。  </p>
+<blockquote>
+<p>1.定时间隔设置得长了，会漏掉一些方法，从而导致检查出来的耗时不准确；<br>2.而定时间隔设置得短了，抓取堆栈这个方法本身调用过多也会影响整体耗时，导致结果不准确。</p>
+</blockquote>
+<p>一般精这个定时间隔设置为0.01秒，这样对整体耗时的影响小，不过很多方法耗时就不准确了。但是整体耗时的数据更加重要些，单个方法耗时精度不高也是可以接受的。  </p>
+<p>####第二种方法，对objc_msgSend方法进行hook来掌握所有方法的执行耗时。<br>hook方法的意思是，在原方法开始执行时缓存执行其他你指定的方法，或者在原有方法执行前后执行你指定的方法，来达到掌握和改变指定方法的目的。<br>hook objc_msgSend这种方法优点是非常精确，缺点是只能针对Objective-C方法。当然，对于C方法和block也不是没有办法，可以使用libffi的ffi_call 来达成hook，但缺点就是编写维护相关工具门槛高。</p>
+<p>objc_msgSend本身是用汇编语言写的，这样做的原因主要有两个：</p>
+<blockquote>
+<p>1.objc_msgSend调用频率最高，在它上面进行的性能优化能够提升整个APP生命周期的性能。而汇编语言在性能优化上属于原子级优化，能够把优化做到极致。所以，这种投入产出比无疑是最大的。<br>2.另一个原因是，其他语言难以实现未知参数跳转到任意函数指针的功能</p>
+</blockquote>
+<p>objc_msgSend方法执行的逻辑是：先获取对象对应类的信息，再获取方法的缓存，根据方法的selector查找函数指针，经过异常处理后，最后跳到对应函数的实现。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/22/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="next" title="设计模式——iOS实现">
+                <i class="fa fa-chevron-left"></i> 设计模式——iOS实现
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/30/%E9%A2%98%E9%9B%86/" rel="prev" title="题集">
+                题集 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Jaylan lu</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jaylan lu</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

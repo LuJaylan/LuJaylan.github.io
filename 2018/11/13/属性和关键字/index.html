@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="这段时间没有继续更新SDWebImage相关的博客了，也没有继续看了，不是因为放弃了，也放弃不了，毕竟还有许多地方值得自己仔细研读的。而是因为敲了些代码，验证了一些相关的知识点，不真正验证（光看别人的博客），永远不知道真正知识点应该是怎样的，或者说过目就忘，很难加深印象从而有自己的理解。被别人再次问道的时候很容易犹疑，或者很容易被问倒了，所以还是自己敲一下。最近感觉自己又快忘了，所以为了记忆也为了">
+<meta property="og:type" content="article">
+<meta property="og:title" content="属性和关键字">
+<meta property="og:url" content="https://lujaylan.github.io/2018/11/13/%E5%B1%9E%E6%80%A7%E5%92%8C%E5%85%B3%E9%94%AE%E5%AD%97/index.html">
+<meta property="og:site_name" content="卤蛋的博客">
+<meta property="og:description" content="这段时间没有继续更新SDWebImage相关的博客了，也没有继续看了，不是因为放弃了，也放弃不了，毕竟还有许多地方值得自己仔细研读的。而是因为敲了些代码，验证了一些相关的知识点，不真正验证（光看别人的博客），永远不知道真正知识点应该是怎样的，或者说过目就忘，很难加深印象从而有自己的理解。被别人再次问道的时候很容易犹疑，或者很容易被问倒了，所以还是自己敲一下。最近感觉自己又快忘了，所以为了记忆也为了">
+<meta property="article:published_time" content="2018-11-13T12:38:31.000Z">
+<meta property="article:modified_time" content="2020-05-09T15:08:56.337Z">
+<meta property="article:author" content="Jaylan lu">
+<meta property="article:tag" content="iOS">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://lujaylan.github.io/2018/11/13/属性和关键字/"/>
+
+
+
+
+
+  <title>属性和关键字 | 卤蛋的博客</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">卤蛋的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">勤学如春起之苗，不见其增，日有所长；辍学如磨刀之石，不见其损，日有所亏</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lujaylan.github.io/2018/11/13/%E5%B1%9E%E6%80%A7%E5%92%8C%E5%85%B3%E9%94%AE%E5%AD%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jaylan lu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="卤蛋的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">属性和关键字</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-13T20:38:31+08:00">
+                2018-11-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Objective-C/" itemprop="url" rel="index">
+                    <span itemprop="name">Objective-C</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>这段时间没有继续更新SDWebImage相关的博客了，也没有继续看了，不是因为放弃了，也放弃不了，毕竟还有许多地方值得自己仔细研读的。而是因为敲了些代码，验证了一些相关的知识点，不真正验证（光看别人的博客），永远不知道真正知识点应该是怎样的，或者说过目就忘，很难加深印象从而有自己的理解。被别人再次问道的时候很容易犹疑，或者很容易被问倒了，所以还是自己敲一下。最近感觉自己又快忘了，所以为了记忆也为了梳理一遍，就重新运行下代码，写博客记录下，著名的心里学家<a href="https://en.wikipedia.org/wiki/Hermann_Ebbinghaus" target="_blank" rel="noopener">赫尔曼·艾宾浩斯</a>提出了以他的名字命名的遗忘曲线告诉我们在短暂的记忆快要遗忘掉时加深记忆可以使得短暂的记忆变成长时间的记忆，所以可见及时复习是多么的重要。<br>###@synthesize&amp;@dynamic<br>其实有好多博客介绍过了，甚至<a href="https://developer.apple.com/library/archive/documentation/General/Conceptual/DevPedia-CocoaCore/DeclaredProperty.html" target="_blank" rel="noopener">官网</a>都有相关介绍。先翻译下吧：<br>声明的属性提供了一种语法简写，用于声明类的访问器方法，并可以选择实现它们。你可以在方法声明列表中的任何位置声明属性，该列表位于类的interface中，或在protocol和category的声明中。你使用下面的语法：<br><code>@property (&lt;#attributes#&gt;) &lt;#type#&gt; &lt;#name#&gt;;</code><br>你使用关键字<code>@property</code>声明属性，你可以选择提供一组带括号的属性，这些属性定义存储语言和属性的其他行为。（有关这些属性的貌似可以参阅最终描述属性列表的文档）<br>每一个属性声明都是以类型规范和名称来结尾的。如：<br><code>@property(copy) NSString *title;</code><br>这语法等价于声明以下访问器方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">- (NSString *)title;</span><br><span class="line">- (void)setTitle:(NSString *)newTitle;</span><br></pre></td></tr></table></figure>
+<p>除了声明访问器方法，你可以指示编译器去合成它们的实现（或者通知编译器你的类将会在运行时合成它们）<br>你可以在类的实现块中使用<code>@synthesize</code>语句来告诉编译器创建与您在属性声明中提供的规范相匹配的实现。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">@interface MyClass : NSObject</span><br><span class="line">&#123;</span><br><span class="line">    NSString *title;</span><br><span class="line">&#125;</span><br><span class="line">@property(copy) NSString *title;</span><br><span class="line">@end</span><br><span class="line"> </span><br><span class="line">@implementation MyClass</span><br><span class="line">@synthesize title;</span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+<p>如果找不到@property声明指定的访问器方法的实现，则使用@dynamic语句告诉编译器禁止警告。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@implementation MyClass</span><br><span class="line">@dynamic title;</span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+<p>当然进一步可以看<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/EncapsulatingData/EncapsulatingData.html" target="_blank" rel="noopener">这儿</a>，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">By default, these accessor methods are synthesized automatically for you by </span><br><span class="line">the compiler, so you don’t need to do anything other than declare the property using @property in the class interface.</span><br><span class="line">The synthesized methods follow specific naming conventions:</span><br><span class="line">	1.The method used to access the value (the getter method) has the same name </span><br><span class="line">	as the property.</span><br><span class="line">	2.The getter method for a property called firstName will also be called </span><br><span class="line">	firstName.</span><br><span class="line">	3.The method used to set the value (the setter method) starts with the word “set” and then uses the capitalized property name.</span><br><span class="line">	4.The setter method for a property called firstName will be called </span><br><span class="line">	setFirstName:.</span><br></pre></td></tr></table></figure>
+<p>默认情况下，编译器会自动合成访问器方法，所以在类的<code>interface</code>中用<code>@property</code>声明了属性后就不用写相关的访问器方法。<br>    1.访问器方法（<code>getter</code>方法）和属性拥有相同的方法名<br>    2.名为<code>firstName</code>的属性的<code>getter</code>方法的方法名也是<code>firstName</code><br>    3.给属性设置值得方法（<code>setter</code>方法）是以<code>“set”</code>开始然后以大写的属性名<br>    4.名为<code>firstName</code>的属性的<code>setter</code>方法的方法名是<code>setFirstName</code></p>
+<p>前面介绍过，其实<code>@property</code>关键字是就完成了set方法和get方法，但是有的人可能会发现存在<code>_firstName</code>变量:<br>当你在<code>@implementation</code>里面加入<code>@dynamic firstName;</code>时，你会发现firstName不见了；且给<code>self.firtName</code>赋值时会发现缺少<code>setFirstName:</code>方法崩溃，而<code>NSString *a = self.firstName;</code>取firstName时，你会发现缺少<code>firstName</code>方法。所以<strong>@dynamic的作用为：</strong></p>
+<p><strong>告诉编译器该属性的<code>getter</code>方法和<code>setter</code>需要程序员手动实现，不能自动生成，否则会在赋值或访问的时候会因为缺少相对应的函数而导致程序崩溃。</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">self.firstName &#x3D; @&quot;&quot;;&#x2F;&#x2F;!崩溃 -[ViewController setFirstName:]: unrecognized selector sent to instance 0x7fce2a204ff0</span><br><span class="line">NSString *a &#x3D; self.firstName;&#x2F;&#x2F;!崩溃 -[ViewController firstName]: unrecognized selector sent to instance 0x7fe7d3d0ff20</span><br></pre></td></tr></table></figure>
+
+<p>默认情况下(不添加@synthesize)<code>@synthesize var = _var</code> ，你会发现会莫名其妙多一个成员变量<code>_var</code>，并且它的内存地址和self.var相同，说明它们指向的是同一个东西。但是<code>_secondName = @&quot;&quot;;//不会调用setter方法</code>不会调用setter方法，而<code>self.secondName = @&quot;&quot;;//会调用setter方法</code>会调用setter方法，这是因为前者是直接访问成员变量，而后者是访问setter方法。同时，你会发现如果同时重写了<code>secondName</code>的getter方法和setter方法，编译器不识别成员变量<code>_secondName</code>了，这个时候需要手动添加<code>@synthesize secondName = _secondName</code>（因为这个时候编译器不会自动生成成员变量）或者自己添加成员变量。</p>
+<p><code>NSLog(@&quot;%p---%p&quot;,_secondName,self.secondName);//0x0---0x0</code></p>
+<p>当然，如果已经声明了一个<code>_var</code>成员变量，就不会再多一个同名的成员变量;<br>这个成员变量和自动生成的成员变量一样都是和<code>self.var</code>指向同一个内存地址</p>
+<p>当你添加上<code>@synthesize firstName = myfirstName</code>或者是<code>@synthesize firstName</code>时，你会发现原来的<code>_firstName消失</code>了，并且出现了一个<code>myfirstName</code>成员变量，或者<code>firstName</code>成员变量,并且他们和原来的<code>self.firstNamed</code>一样都是指向相同的对象，这时候可以用<code>myfirstName</code>或者<code>firstName</code>访问；</p>
+<p>所以可以认为<code>@synthesize</code>有以下作用：</p>
+<p><strong>1, 当程序员没有手动重写属性的访问方法时（setter和getter）,@synthesize会告诉编译器自动合成</strong></p>
+<p><strong>2, 生成一个成员变量(如果已经存在相关成员变量就不再生成了),并且该成员变量和self.var指向相同的内存地址，不同的是成员变量不会调用访问方法</strong></p>
+<p><strong>3, 如果指定合成相关成员变量的名称</strong></p>
+<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD<br>在上面的说明中，我们会发现，自动合成不是一定会发生的，所以手动添加<code>@synthesize</code>是必要的，那么手动添加<code>@synthesize</code>的场景有哪些呢，我们可以先看下哪些情况下系统是不会自动添加<code>@synthesize</code>:</p>
+<p>1，使用了@dynamic时（这个时候不能添加<code>@synthesize</code>–<code>Property &#39;secondName&#39; is already implemented</code>,@dynamic和@synthesize不能同时处理一个属性，否则后面的就会报这个错误）；<br>2，同时重写了setter和getter方法（上面介绍过）；<br>3，重写了只读属性的getter方法（和1一样，因为编译器不会合成setter和getter方法了，也不合成成员变量，导致重写时返回成员变量不识别；<br>4，重写父类的属性时，此时需要重写访问方法，因为不识别成员变量，所以需要添加；<br>5，在@protocol中定义的属性（有博客说category中的的属性也是的，但是本人经过实验，发现在category中不允许添加<code>@synthesize</code>）；<br>6，在@category中定义的属性（但category中不允许添加<code>@synthesize</code>的–<code>@synthesize not allowed in a category&#39;s implementation</code>）<br>总之，除了1和6之不能添加外其他的情况都需要手动添加<code>@synthesize</code>，其他都是因为没有自动合成成员变量所以需要手动添加<code>@synthesize</code>，或者你想手动管理属性时就应该手动添加。<br>=======<br>在上面的说明中，我们会发现，自动合成不是一定会发生的，所以手动添加<code>@synthesize</code>是必要的，那么手动添加<code>@synthesize</code>的场景有哪些呢(<a href="https://stackoverflow.com/questions/19784454/when-should-i-use-synthesize-explicitly/19784662" target="_blank" rel="noopener">https://stackoverflow.com/questions/19784454/when-should-i-use-synthesize-explicitly/19784662</a>)<br>1，同时重写了setter和getter方法（上面介绍过）<br>2，重写了只读属性的getter方法（和1一样，因为编译器不会合成setter和getter方法了，也不合成成员变量，导致重写时返回成员变量不识别）<br>3，重写父类的属性时,此时需要重写访问方法，因为不识别成员变量，所以需要添加<br>4，在@protocol中定义的属性（有博客说category中的的属性也是的，但是本人经过实验，发现在category中不允许添加<code>@synthesize</code>）<br>总之，除了4以外，其他都是因为没有自动合成成员变量所以需要手动添加<code>@synthesize</code></p>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>1a17da72b11a100c330cff1c9715e3d61a5e431f</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+<p>从上面的说明中可以知道<code>@property</code>的本质就是<code>iVar + getter + setter</code>，也就是“实例变量（iVar）”和“存取方法（access method = getter(获取方法) + setter(设置方法)）”。属性作为Objective-C的一个特性，主要的作用就是用于封装类中相关的数据，Objective-C对象通常会把其所需要的数据保存为各种实例变量，而用“存取方法”访问这些数据，其中“获取方法”<code>getter</code>用于读取，“设置方法”<code>setter</code>用于写入。</p>
+<p>其实也可以大致猜测到实例变量和存取方法时怎么添加到类中的，说白了就是“自动合成<code>autosynthesis</code>”，我们知道“实例变量”和“类变量”合称为“成员变量”，那么添加实例变量时，肯定会将该属性的描述添加成员变量列表，同时也会在属性列表中添加相关的属性描述，然后我们知道类的存储方式类似于结构体，里面的属性存取和数组类似（可以参考<a href="https://stackoverflow.com/questions/2748995/struct-memory-layout-in-c" target="_blank" rel="noopener">这儿</a>,有兴趣可以动手验证下），是连续的地址，所以有个对初始地址的偏移量的计算，接着是实现“存取方法”，<code>getter</code>和<code>setter</code>的读取和写入都是从偏移量开始的。<br>总之，每一增加一个属性值都会有以下操作：<br>1，在ivar_list（成员变量列表）中添加成员变量的描述<br>2, 在method_list (方法列表)中添加setter和getter方法的描述<br>3，在属性列表中增加一个属性的描述<br>4，计算该属性在对象中的偏移量<br>5，给出setter和getter方法对应的实现<br>###属性修饰关键字<br>属性关键字可以分为四类：原子性，读写权限，内存管理语义，方法名</p>
+<p>在介绍属性修饰关键字之前不得不介绍这些关键字的排序，一般来说应该按照下面的顺序来排序：原子性，读写权限和内存管理</p>
+<p>####原子性（nonatomic&amp;atomic）<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/EncapsulatingData/EncapsulatingData.html" target="_blank" rel="noopener">官方资料</a><br>默认情况下属性都是原子性的（<code>atomic</code>）,也就是说，开发人员不指定原子性的属性一般都是原子性的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@interface XYZObject : NSObject</span><br><span class="line">@property NSObject *implicitAtomicObject;          &#x2F;&#x2F; atomic by default</span><br><span class="line">@property (atomic) NSObject *explicitAtomicObject; &#x2F;&#x2F; explicitly marked atomic</span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+<p>这就意味着编译器合成的访问方法确保了访问属性都是通过相关的属性访问方法（读取通过<code>getter</code>方法，设置通过<code>setter</code>方法），即使多个线程同时访问属性，也是这样。<br>这是因为原子访问器方法的内部实现和同步都是私有的，因此不可能将合成访问器与您自己实现的访问器方法组合起来。例如，如果您尝试为原子读写属性提供自定义<code>setter</code>,但让编译器和成<code>getter</code>,则会得到编译警告(<code>Writable atomic property &#39;atomicS&#39; cannot pair a synthesized getter with a user defined setter</code>)。</p>
+<p>你可以用<code>nonatomic</code>指定属性的非原子性    ，这样合成访问器就简单的直接设置和返回相对应的值，但是在有多个不同的线程同时访问该属性时可能会发生未知的错误，它也可以将合成的<code>setter</code>方法和自定义的<code>getter</code>方法组合起来</p>
+<p>但是<code>atomic</code>就一定线程安全吗？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Note: Property atomicity is not synonymous with an object’s thread safety.</span><br><span class="line"></span><br><span class="line">Consider an XYZPerson object in which both a person’s first and last names are changed using atomic accessors from one thread. If another thread accesses both names at the same time, the atomic getter methods will return complete strings (without crashing), but there’s no guarantee that those values will be the right names relative to each other. If the first name is accessed before the change, but the last name is accessed after the change, you’ll end up with an inconsistent, mismatched pair of names.</span><br><span class="line"></span><br><span class="line">This example is quite simple, but the problem of thread safety becomes much more complex when considered across a network of related objects. Thread safety is covered in more detail in [Concurrency Programming Guide]().</span><br></pre></td></tr></table></figure>
+<p>就像一个XYZPerson对象，在该对象中，使用来自一个线程的原子访问器更改人的姓和名。如果另一个线程同时访问这两个名称，原子getter方法将返回完整的字符串(不会崩溃)，但是不能保证这些值是相对于彼此的正确名称。如果在更改之前访问了姓，而在更改之后访问了姓，那么您将得到一对不一致的、不匹配的名称。</p>
+<p>####方法名&amp;读写权限<br>其实开始本篇博客的写作的决定是来自<code>SDWebImage SDK</code>的阅读的，它有一个类的一个属性定义是<code>@property (nonatomic, assign, getter=isFinished) BOOL finished;</code>这样的，如果想重写该属性的<code>getter</code>方法，你会发现只有<code>isFinished</code>的提示，而没有<code>finished</code>的提示，但是运行时，无论是<code>self.finished</code>还是<code>self.isFinished</code>都会调用<code>isFinished</code>getter方法.通过打印会发现<code>self.finished</code>、<code>self.isFinished</code>和<code>_finished</code>指向的是同一个内存地址。<br>所以<code>getter=isFinished</code>作用为：<br>1，更改了<code>getter</code>方法的方法名(<code>setter = method</code>也可以更改方法名)<br>2，给该属性添加了一个新的访问途径，并且该途径和<code>_finished</code>一模一样</p>
+<p>在此说明一下readOnly的作用(如果给上面的属性添加readonly，默认是readwrite):<br>限制了函数外更改<code>finished</code>属性，现在的属性因为没有“设置方法”所以不能用点语法更改，所以只能通过成员变量（下划线）的方式更改，所以只能在函数内更改</p>
+<p>####内存管理语义<br>先上代码：</p>
+
+<p>其中self.strongStr、self.weakStr、self.assignStr、self.cp都分别是用相对应的关键字（stong、weak、assign、copy）修饰的属性，后面注释部分是打印输出。</p>
+<p><code>self.strongStr = strM;</code>这句代码之后strM的引用计数加一，<code>self.strongStr = nil;</code>这句代码执行之后引用计数减一<br>可知strong关键字（强引用）会影响引用计数的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">self.weakStr &#x3D; strM;</span><br><span class="line">  self.assignStr &#x3D; strM;</span><br><span class="line">  self.cpStr &#x3D; strM;</span><br></pre></td></tr></table></figure>
+<p>执行之后引用计数没变，可知在这段代码中<code>weak、assign、copy</code>没有影响引用计数<br><code>NSLog(@&quot;%p-%p-%p-%p-%p&quot;,strM,self.weakStr,self.assignStr,self.strongStr,self.cpStr);//0x600000969e90-0x600000969e90-0x600000969e90-0x600000969e90-0xcc8bd2833e56ff1c</code><br>打印它们的指向的地址，会发现只有self.cpStr的地址和其他的不同，所以copy实现了<a href="">深拷贝</a>,开辟了新的内存，而<code>weak assign</code>不影响引用计数</p>
+<p>那么<code>weak</code>和<code>assign</code>有什么区别呢？<br>用<code>-fno-objc-arc</code>关闭arc后，<code>[strM release]</code>执行后，释放掉该对象然后用命令分别打印如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">(lldb) p self.weakStr</span><br><span class="line">(NSString *) $0 &#x3D; nil</span><br><span class="line">(lldb) p self.assignStr</span><br><span class="line">(NSString *) $2 &#x3D; 0x000060000066b150</span><br></pre></td></tr></table></figure>
+<p>会发现，对象释放掉后，weakStr的指针置空了，而assignStr的指针没有置空<br>也就是说：weak 和assign的不同就是,weak修饰的对象会在对象释放掉后置空指针，而assign不会置空指针。（当然还有weak只用于修饰对象类型，而assign可用于修饰对象类型和基本数据类型）</p>
+<p>总结如下：<a href="https://stackoverflow.com/questions/8927727/objective-c-arc-strong-vs-retain-and-weak-vs-assign/15541801#15541801" target="_blank" rel="noopener">参考</a></p>
+<p><strong><code>strong(=retain)</code>//Objective-C对象默认修饰关键字</strong></p>
+<p>定义了一种拥有关系，只有在你想持有该对象的时候才会用。通常对<code>UIViewControllers</code>用，在arc环境下，不用担心对象的引用计数，arc会自动释放</p>
+<p><strong><code>weak</code></strong></p>
+<p>定义了一种非拥有的关系，只要有强引用指向改对象，弱引用就会一直保留该对象，这点和assign一样，并且不会持有和释放该对象。<br>通常用于IBOutlets，因为这些对象只需要在父对象UIViewController存在的时候存在就好。<br>弱引用是不保护引用对象不被垃圾收集器收集的引用。对象在摧毁时，weak指针会自动置空，而assign指针不会，这是它们唯一的区别。只有在避免循环的时候才用weak。</p>
+<p><strong><code>assign</code>//基本数据类型默认修饰关键字</strong></p>
+<p>用assign修饰C基本数据类，用weak修饰弱引用的Objective-C对象，当对象释放掉后，由于assign指针没有置空，所以会造成野指针，而Objective-C对象是在堆上，对象释放掉后，如果采用的是assign指针，就会造成野指针，当再次分配该内存时就会崩溃，而栈是由系统自己处理的</p>
+<p><strong><code>copy</code></strong></p>
+<p>用于实现浅拷贝，将不可变属性设置成copy可以确保：<br>当可变对象传递给该属性时，属性都是不可变对象。（因为可变类型可以传递个相对应的不可变类型）。如果传入一个不可变对象，改属性可以保留它（浅拷贝），如果传入一个可变对象，它将会开辟一个新的内存复制它，实现深拷贝（当然集合类型的可变类型实现的也是浅拷贝）。</p>
+<p>当将可变属性设置成copy时，这是就相当于strong，如果不可变类型传入，调用可变类型的特有方法时会崩溃</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">_ss1 &#x3D; [NSMutableString stringWithFormat:@&quot;&quot;];&#x2F;&#x2F;(lldb) p _ss1 (__NSCFString *) $0 &#x3D; 0x0000600002a7de60</span><br><span class="line">NSString *str &#x3D; [NSString stringWithFormat:@&quot;sfds&quot;];&#x2F;&#x2F;(lldb) p _ss1  (__NSCFString *) $0 &#x3D; 0x0000600002a7de60</span><br><span class="line">_ss1 &#x3D; str;&#x2F;&#x2F;p _ss1  (NSTaggedPointerString *) $2 &#x3D; 0xb92d0fbc87c5b067 @&quot;sfds&quot;</span><br><span class="line">[_ss1 appendFormat:@&quot;ds&quot;];&#x2F;&#x2F;[NSTaggedPointerString appendFormat:]: unrecognized selector sent to instance</span><br></pre></td></tr></table></figure>
+<p>每句代码后面的注释是执行这句代码后断点打印出来的，最后一句是崩溃输出</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">注意：</span><br><span class="line">weak不能用于修饰非Objective-C对象</span><br><span class="line">assign可以用于修饰非基本数据类型（Objective-C对象）</span><br><span class="line">Objective-C的默认修饰关键字为strong </span><br><span class="line">基本数据类型的默认修饰关键字为assign</span><br></pre></td></tr></table></figure>
+
+<p>####weak关键字的实现<br>这个好多博客都有介绍，在此也不刨runtime源码了（第一次看的话会头大，有兴趣的可以多看看）<br>言简意赅地总结下：</p>
+<p>#####weak的作用<br>weak是弱引用，它不会影响引用对象的引用计数，将它所修饰的指针（弱指针）指向一个对象时，不会导致该对象的引用计数加一，当该对象释放时这个弱指针会自动设置成nil，避免了野指针访问内存引起崩溃（这也是不用assign修饰Objective-C对象的原因），主要用于解决循环引用而导致的<a href="https://developer.apple.com/library/archive/documentation/Performance/Conceptual/ManagingMemory/Articles/FindingLeaks.html" target="_blank" rel="noopener">内存泄漏</a><br>#####weak的原理<br>weak表其实是一个以所指对象的地址为key,weak指针地址所组成的数组为value的hash表，有objc_initWeak,objc_storeWeak,objc_destoryWeak。</p>
+<p>#####原理实现步骤<br>1，初始化。runtime会调用objc_initWeak函数，objc_initWeak函数会初始化一个新的weak指针指向对象的地址。<br>2，添加引用。objec_initWeak函数会调用objc_storeWeak函数来更新指针指向，创建对应的弱引用表。<br>3，消除引用。对象释放时，调用clearDeallocationg函数，首先获取weak指针地址的数组，然后遍历数组把其中的数据置为nil，接着将这个记录从weak表中删除，从引用计数表中删除废弃对象的记录</p>
+<p>如：Objective-C对象obj，现在有两个弱指针weakPointer0、weakPointer1指向它，那么这个weak表中就存在一个以obj内存地址为key的一个元素，该元素的value是以两个弱指针的地址为元素的数组，这也解释了为什么是数组而不是数（因为可能存在多个弱指针）<br>这部分参考的<a href="http://www.cocoachina.com/ios/20171213/21520.html" target="_blank" rel="noopener">这儿</a></p>
+<p>###拷贝与可变、不可变之间的关系</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;在运行到第一行和第二行的时候分别在控制台打印地址（p str和p &amp;str）会发现p str打印的地址变了，而p &amp;str打印的地址没变，从而可以知道p str打印的是指针所指对象的z地址，p &amp;str打印的是指针变了的地址(指针地址)</span><br><span class="line">    NSString *str &#x3D; @&quot;hello&quot;;&#x2F;&#x2F;1</span><br><span class="line">    str &#x3D; @&quot;world&quot;;&#x2F;&#x2F;2</span><br><span class="line">    </span><br><span class="line">    self.ss0 &#x3D; @&quot;ss0&quot;;</span><br><span class="line">    self.ss1 &#x3D; [[NSMutableString alloc] initWithString:@&quot;ss1&quot;];</span><br><span class="line">    &#x2F;&#x2F;浅拷贝，地址一样</span><br><span class="line">    id ss0_copy &#x3D; [self.ss0 copy];</span><br><span class="line">    NSLog(@&quot;ss0---%p--%p&quot;,self.ss0,ss0_copy);&#x2F;&#x2F;打印出来的效果和p self.ss0是相同的</span><br><span class="line">    __unused id ss0_sub &#x3D; [ss0_copy substringFromIndex:1];</span><br><span class="line">&#x2F;&#x2F;    [ss0_copy appendString:@&quot;_m&quot;];&#x2F;&#x2F;崩溃，生成的副本是不可变的</span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F;深拷贝，地址不同</span><br><span class="line">    id ss1_copy &#x3D; [self.ss1 copy];</span><br><span class="line">    NSLog(@&quot;ss1---%p--%p&quot;,self.ss1,ss1_copy);</span><br><span class="line">&#x2F;&#x2F;        [ss1_copy appendString:@&quot;_m&quot;];&#x2F;&#x2F;崩溃，生成的副本是不可变的</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F;深拷贝，ss0_mutableCopy 和self.ss0指向的对象不一样</span><br><span class="line">    id ss0_mutableCopy &#x3D; [self.ss0 mutableCopy];</span><br><span class="line">    id ss1_mutableCopy &#x3D; [self.ss1 mutableCopy];</span><br><span class="line">    </span><br><span class="line">    NSLog(@&quot;ss0---%p--%p&quot;,self.ss0,ss0_mutableCopy);</span><br><span class="line">    NSLog(@&quot;ss1---%p--%p&quot;,self.ss1,ss1_mutableCopy);</span><br><span class="line">    &#x2F;&#x2F;下面两个都正常运行，表明生成的副本都是可变的</span><br><span class="line">    [ss0_mutableCopy appendString:@&quot;_m&quot;];</span><br><span class="line">    [ss1_mutableCopy appendString:@&quot;_m&quot;];</span><br><span class="line">    </span><br><span class="line"> &#x2F;&#x2F;小结：对于字符串，只有不可变字符串的copy才是浅拷贝，其他都是深拷贝；copy生成的都是不可变字符串，mutableCopy生成的都是可变字符串</span><br></pre></td></tr></table></figure>
+<p>所以，对于字符串来说，只有不可变字符串的copy才是浅拷贝，其他的都是深拷贝；copy生成的都是不可变字符串，mutableCopy生成的都是可变字符串，和被拷贝的字符串是否可变无关。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;打印出来的地址相同，浅拷贝</span><br><span class="line">    self.set0 &#x3D; [[NSSet alloc] initWithObjects:@1,@2,@3, nil];</span><br><span class="line">    id set0_copy &#x3D; [self.set0 copy];</span><br><span class="line">    &#x2F;&#x2F;    [set0_copy addObject:@4];&#x2F;&#x2F;崩溃，副本是不可变的</span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F;打印出来的地址相同，浅拷贝</span><br><span class="line">    self.set1 &#x3D; [[NSMutableSet alloc] initWithObjects:@1,@2,@3, nil];</span><br><span class="line">    id set1_copy &#x3D; [self.set1 copy];</span><br><span class="line">    &#x2F;&#x2F;    [set1_copy addObject:@5];&#x2F;&#x2F;崩溃，副本是不可变的</span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F;打印出来的地址不同，但里面的每个元素的地址相同，没有做内容拷贝</span><br><span class="line">    id set0_mutableCopy &#x3D; [self.set0 mutableCopy];</span><br><span class="line">    [set0_mutableCopy addObject:@6];&#x2F;&#x2F;正常运行，副本是可变的</span><br><span class="line">    id set1_mutableCopy &#x3D; [self.set1 mutableCopy];</span><br><span class="line">    [set1_mutableCopy addObject:@7];&#x2F;&#x2F;正常运行，副本是可变的</span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F;小结：严格的来说集合的所有拷贝都是浅拷贝，只有不可变数组的copy没有进行指针拷贝，其他的都只是进行了指针拷贝；copy生成的副本都是不可变的，mutableCopy生成的副本都是可变的，这个和字符串相同</span><br></pre></td></tr></table></figure>
+<p>在此没有一一列举字典和集合的测试代码，其实结果和数组是一样的。就像代码中的小结一样：</p>
+<p>严格的来说集合的所有拷贝都是浅拷贝，只有不可变数组的copy没有进行指针拷贝，其他的都只是进行了指针拷贝；copy生成的副本都是不可变的，mutableCopy生成的副本都是可变的，这个和字符串相同</p>
+<p>本篇博客好多都是参考<a href="https://github.com/ChenYilong/iOSInterviewQuestions/blob/master/01%E3%80%8A%E6%8B%9B%E8%81%98%E4%B8%80%E4%B8%AA%E9%9D%A0%E8%B0%B1%E7%9A%84iOS%E3%80%8B%E9%9D%A2%E8%AF%95%E9%A2%98%E5%8F%82%E8%80%83%E7%AD%94%E6%A1%88/%E3%80%8A%E6%8B%9B%E8%81%98%E4%B8%80%E4%B8%AA%E9%9D%A0%E8%B0%B1%E7%9A%84iOS%E3%80%8B%E9%9D%A2%E8%AF%95%E9%A2%98%E5%8F%82%E8%80%83%E7%AD%94%E6%A1%88%EF%BC%88%E4%B8%8A%EF%BC%89.md#8-runtime-%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0-weak-%E5%B1%9E%E6%80%A7" target="_blank" rel="noopener">这里</a>，干货满满，但是还是验证下为好，毕竟纸上得来终觉浅呀</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/10/10/SDWebImage-%E4%B8%89/" rel="next" title="SDWebImage(三)">
+                <i class="fa fa-chevron-left"></i> SDWebImage(三)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/11/29/CPU%E5%92%8CGPU%E5%90%8C%E6%AD%A5/" rel="prev" title="CPU和GPU同步">
+                CPU和GPU同步 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Jaylan lu</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jaylan lu</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

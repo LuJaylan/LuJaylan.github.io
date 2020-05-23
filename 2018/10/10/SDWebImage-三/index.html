@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="SDWebImageDownloaderOperationInterface作用：描述一个下载器操作。若用一个自定义的下载器操作，该下载器需要继承NSOperation并且遵守该协议。 1234FOUNDATION_EXPORT NSString * _Nonnull const SDWebImageDownloadStartNotification;FOUNDATION_EXPORT NSStr">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SDWebImage(三)">
+<meta property="og:url" content="https://lujaylan.github.io/2018/10/10/SDWebImage-%E4%B8%89/index.html">
+<meta property="og:site_name" content="卤蛋的博客">
+<meta property="og:description" content="SDWebImageDownloaderOperationInterface作用：描述一个下载器操作。若用一个自定义的下载器操作，该下载器需要继承NSOperation并且遵守该协议。 1234FOUNDATION_EXPORT NSString * _Nonnull const SDWebImageDownloadStartNotification;FOUNDATION_EXPORT NSStr">
+<meta property="article:published_time" content="2018-10-10T11:55:27.000Z">
+<meta property="article:modified_time" content="2020-05-09T15:08:41.305Z">
+<meta property="article:author" content="Jaylan lu">
+<meta property="article:tag" content="iOS">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://lujaylan.github.io/2018/10/10/SDWebImage-三/"/>
+
+
+
+
+
+  <title>SDWebImage(三) | 卤蛋的博客</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">卤蛋的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">勤学如春起之苗，不见其增，日有所长；辍学如磨刀之石，不见其损，日有所亏</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lujaylan.github.io/2018/10/10/SDWebImage-%E4%B8%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jaylan lu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="卤蛋的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">SDWebImage(三)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-10T19:55:27+08:00">
+                2018-10-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="SDWebImageDownloaderOperationInterface"><a href="#SDWebImageDownloaderOperationInterface" class="headerlink" title="SDWebImageDownloaderOperationInterface"></a>SDWebImageDownloaderOperationInterface</h3><p>作用：描述一个下载器操作。若用一个自定义的下载器操作，该下载器需要继承<code>NSOperation</code>并且遵守该协议。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">FOUNDATION_EXPORT NSString * _Nonnull const SDWebImageDownloadStartNotification;</span><br><span class="line">FOUNDATION_EXPORT NSString * _Nonnull const SDWebImageDownloadReceiveResponseNotification;</span><br><span class="line">FOUNDATION_EXPORT NSString * _Nonnull const SDWebImageDownloadStopNotification;</span><br><span class="line">FOUNDATION_EXPORT NSString * _Nonnull const SDWebImageDownloadFinishNotification;</span><br></pre></td></tr></table></figure>
+<p>表名这几个<a href="">指针常量</a>是从外部查找的，其中<code>FOUNDATION_EXPORT</code>的相关代码位：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#if defined(__cplusplus)</span><br><span class="line">#define FOUNDATION_EXTERN extern&quot;C&quot;</span><br><span class="line">#else</span><br><span class="line">#define FOUNDATION_EXTERN extern</span><br><span class="line">#endif</span><br><span class="line"></span><br><span class="line">#define FOUNDATION_EXPORT  FOUNDATION_EXTERN</span><br></pre></td></tr></table></figure>
+<p>兼容了<code>extern&quot;C&quot;</code>和<code>extern</code>,感兴趣的可以看看<a href=""><code>extern</code></a>。当然这一块不属于该协议中的内容。<br>该协议声明了七个方法，没有给出关键字<code>@optional</code>默认为必须实现。<br>第一个方法是根据三个参数生成一个下载操作的实例；第二个方法是给下载操作加入下载过程中和下载结束后需要执行的block；第三个函数返回下载的图片是否需要压缩；第四个设置压缩参数；第五个返回身份认证；第六个是设置身份认证；第七个是取消当前操作。</p>
+<h3 id="SDWebImageDownloaderOperation"><a href="#SDWebImageDownloaderOperation" class="headerlink" title="SDWebImageDownloaderOperation"></a>SDWebImageDownloaderOperation</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@interface SDWebImageDownloaderOperation : NSOperation &lt;SDWebImageDownloaderOperationInterface, SDWebImageOperation, NSURLSessionTaskDelegate, NSURLSessionDataDelegate&gt;</span><br></pre></td></tr></table></figure>
+<p>该类是自定义的下载操作，继承<code>NSOperation</code>、实现了<code>SDWebImageDownloaderOperationInterface</code>、<code>SDWebImageOperation</code>、<code>NSURLSessionTaskDelegate、</code>NSURLSessionDataDelegate `</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line"> * The request used by the operation&#39;s task.</span><br><span class="line"> *&#x2F;</span><br><span class="line">@property (strong, nonatomic, readonly, nullable) NSURLRequest *request;</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * The operation&#39;s task</span><br><span class="line"> *&#x2F;</span><br><span class="line">@property (strong, nonatomic, readonly, nullable) NSURLSessionTask *dataTask;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">@property (assign, nonatomic) BOOL shouldDecompressImages;</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> *  Was used to determine whether the URL connection should consult the credential storage for authenticating the connection.</span><br><span class="line"> *  @deprecated Not used for a couple of versions</span><br><span class="line"> *&#x2F;</span><br><span class="line">@property (nonatomic, assign) BOOL shouldUseCredentialStorage __deprecated_msg(&quot;Property deprecated. Does nothing. Kept only for backwards compatibility&quot;);</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * The credential used for authentication challenges in &#96;-URLSession:task:didReceiveChallenge:completionHandler:&#96;.</span><br><span class="line"> *</span><br><span class="line"> * This will be overridden by any shared credentials that exist for the username or password of the request URL, if present.</span><br><span class="line"> *&#x2F;</span><br><span class="line">@property (nonatomic, strong, nullable) NSURLCredential *credential;</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * The SDWebImageDownloaderOptions for the receiver.</span><br><span class="line"> *&#x2F;</span><br><span class="line">@property (assign, nonatomic, readonly) SDWebImageDownloaderOptions options;</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * The expected size of data.</span><br><span class="line"> *&#x2F;</span><br><span class="line">@property (assign, nonatomic) NSInteger expectedSize;</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * The response returned by the operation&#39;s task.</span><br><span class="line"> *&#x2F;</span><br><span class="line">@property (strong, nonatomic, nullable) NSURLResponse *response;</span><br></pre></td></tr></table></figure>
+<p>以上代码是声明的属性：<br><code>request</code>: 操作任务的url请求<br><code>dataTask</code>: 操作的任务<br><code>shouldDecompressImages</code>: 图像是否压缩<br><code>shouldUseCredentialStorage</code>: 用于确定url连接是否应该参考存储的身份认证来验证连接<br><code>credential</code>: 用于在<code>-URLSession:task:didReceiveChallenge:completionHandler:</code>验证的凭据，如果存在请求URL的用户名或密码，则会覆盖此任何共享凭据。<br><code>options</code>: 下载操作的配置选项,<code>SDWebImageDownloaderOptions</code>属性<br><code>expectedSize</code>: 期望的数据大小<br><code>response</code>: 下载操作任务请求的返回对象<br>下面是对外的API方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"> * The response returned by the operation&#39;s task.</span><br><span class="line"> *&#x2F;</span><br><span class="line">@property (strong, nonatomic, nullable) NSURLResponse *response;</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> *  Initializes a &#96;SDWebImageDownloaderOperation&#96; object</span><br><span class="line"> *</span><br><span class="line"> *  @see SDWebImageDownloaderOperation</span><br><span class="line"> *</span><br><span class="line"> *  @param request        the URL request</span><br><span class="line"> *  @param session        the URL session in which this operation will run</span><br><span class="line"> *  @param options        downloader options</span><br><span class="line"> *</span><br><span class="line"> *  @return the initialized instance</span><br><span class="line"> *&#x2F;</span><br><span class="line">- (nonnull instancetype)initWithRequest:(nullable NSURLRequest *)request</span><br><span class="line">                              inSession:(nullable NSURLSession *)session</span><br><span class="line">                                options:(SDWebImageDownloaderOptions)options NS_DESIGNATED_INITIALIZER;</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> *  Adds handlers for progress and completion. Returns a tokent that can be passed to -cancel: to cancel this set of</span><br><span class="line"> *  callbacks.</span><br><span class="line"> *</span><br><span class="line"> *  @param progressBlock  the block executed when a new chunk of data arrives.</span><br><span class="line"> *                        @note the progress block is executed on a background queue</span><br><span class="line"> *  @param completedBlock the block executed when the download is done.</span><br><span class="line"> *                        @note the completed block is executed on the main queue for success. If errors are found, there is a chance the block will be executed on a background queue</span><br><span class="line"> *</span><br><span class="line"> *  @return the token to use to cancel this set of handlers</span><br><span class="line"> *&#x2F;</span><br><span class="line">- (nullable id)addHandlersForProgress:(nullable SDWebImageDownloaderProgressBlock)progressBlock</span><br><span class="line">                            completed:(nullable SDWebImageDownloaderCompletedBlock)completedBlock;</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> *  Cancels a set of callbacks. Once all callbacks are canceled, the operation is cancelled.</span><br><span class="line"> *</span><br><span class="line"> *  @param token the token representing a set of callbacks to cancel</span><br><span class="line"> *</span><br><span class="line"> *  @return YES if the operation was stopped because this was the last token to be canceled. NO otherwise.</span><br><span class="line"> *&#x2F;</span><br><span class="line">- (BOOL)cancel:(nullable id)token;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">- (nonnull instancetype)initWithRequest:(nullable NSURLRequest *)request</span><br><span class="line">                              inSession:(nullable NSURLSession *)session</span><br><span class="line">                                options:(SDWebImageDownloaderOptions)options NS_DESIGNATED_INITIALIZER;</span><br></pre></td></tr></table></figure>
+<p>指定的初始化方法，返回一个实例。后面两个前面介绍过，就不重复了。</p>
+<h4 id="m文件中"><a href="#m文件中" class="headerlink" title=".m文件中"></a>.m文件中</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#if (__IPHONE_OS_VERSION_MIN_REQUIRED &amp;&amp; __IPHONE_OS_VERSION_MIN_REQUIRED &lt; __IPHONE_9_0)</span><br></pre></td></tr></table></figure>
+<p><code>__IPHONE_OS_VERSION_MIN_REQUIRED</code>: 指的Deployment target,Xcode配置最低的版本<br>后面定义了NSURLSession任务的三个优先级，都是常量。不禁让人想起UI<a href="">约束</a>的<a href="">优先级</a>,在更新优先级是不能更改优先级为1000的优先级，或者不能将优先级改为1000，因为不能将可遵守的约束改成必须遵守的约束（也不能将必须遵守的约束改成可遵守的约束），而优先级为1000的约束表明该约束是必须需要遵守的，当然这是题外话。<br>上面说到的指针常量（用于通知）是在这儿定义的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">NSString *const SDWebImageDownloadStartNotification &#x3D; @&quot;SDWebImageDownloadStartNotification&quot;;</span><br><span class="line">NSString *const SDWebImageDownloadReceiveResponseNotification &#x3D; @&quot;SDWebImageDownloadReceiveResponseNotification&quot;;</span><br><span class="line">NSString *const SDWebImageDownloadStopNotification &#x3D; @&quot;SDWebImageDownloadStopNotification&quot;;</span><br><span class="line">NSString *const SDWebImageDownloadFinishNotification &#x3D; @&quot;SDWebImageDownloadFinishNotification&quot;;</span><br></pre></td></tr></table></figure>
+<p>刚好，下面也定义了指针常量（姑且称为状态）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">static NSString *const kProgressCallbackKey &#x3D; @&quot;progress&quot;;</span><br><span class="line">static NSString *const kCompletedCallbackKey &#x3D; @&quot;completed&quot;;</span><br></pre></td></tr></table></figure>
+<p>与上面定义的通知指针常量和这儿定义状态常量只少了<a href=""><code>static</code></a>，还有<a href=""><code>const</code></a>关键字也可以关注下。</p>
+<p><code>typedef NSMutableDictionary&lt;NSString *, id&gt; SDCallbacksDictionary;</code>: 定义了一个类型，用<a href=""><code>typedef</code></a>指明用到的<code>SDCallbacksDictionary</code> 都是表示类型<code>NSMutableDictionary&lt;NSString *, id&gt;</code>,该类型是一个可变字典，这个字典的key为string类型，value为id<a href="">动态类型</a>。可能有的人会说字典的key不都是string类型吗，其实这是一个很容易出现的错误（习惯到知道）。文档给出的原文是这样的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">In general, a key can be any object (provided that it conforms to the NSCopying protocol—see below), but note that when using key-value coding the key must be a string</span><br></pre></td></tr></table></figure>
+<p>也就是说，除了用<a href="">键值编码</a>必须要求key为string类型外，通常来说key可以是任意对象。</p>
+<p>.m中私有属性有：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">@interface SDWebImageDownloaderOperation ()</span><br><span class="line"></span><br><span class="line">@property (strong, nonatomic, nonnull) NSMutableArray&lt;SDCallbacksDictionary *&gt; *callbackBlocks;</span><br><span class="line"></span><br><span class="line">@property (assign, nonatomic, getter &#x3D; isExecuting) BOOL executing;</span><br><span class="line">@property (assign, nonatomic, getter &#x3D; isFinished) BOOL finished;</span><br><span class="line">@property (strong, nonatomic, nullable) NSMutableData *imageData;</span><br><span class="line">@property (copy, nonatomic, nullable) NSData *cachedData; &#x2F;&#x2F; for &#96;SDWebImageDownloaderIgnoreCachedResponse&#96;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; This is weak because it is injected by whoever manages this session. If this gets nil-ed out, we won&#39;t be able to run</span><br><span class="line">&#x2F;&#x2F; the task associated with this operation</span><br><span class="line">@property (weak, nonatomic, nullable) NSURLSession *unownedSession;</span><br><span class="line">&#x2F;&#x2F; This is set if we&#39;re using not using an injected NSURLSession. We&#39;re responsible of invalidating this one</span><br><span class="line">@property (strong, nonatomic, nullable) NSURLSession *ownedSession;</span><br><span class="line"></span><br><span class="line">@property (strong, nonatomic, readwrite, nullable) NSURLSessionTask *dataTask;</span><br><span class="line"></span><br><span class="line">@property (strong, nonatomic, nonnull) dispatch_semaphore_t callbacksLock; &#x2F;&#x2F; a lock to keep the access to &#96;callbackBlocks&#96; thread-safe</span><br><span class="line"></span><br><span class="line">@property (strong, nonatomic, nonnull) dispatch_queue_t coderQueue; &#x2F;&#x2F; the queue to do image decoding</span><br><span class="line">#if SD_UIKIT</span><br><span class="line">@property (assign, nonatomic) UIBackgroundTaskIdentifier backgroundTaskId;</span><br><span class="line">#endif</span><br><span class="line"></span><br><span class="line">@property (strong, nonatomic, nullable) id&lt;SDWebImageProgressiveCoder&gt; progressiveCoder;</span><br><span class="line"></span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+<p>意译的理解为：<br><code>callbackBlocks</code>: 数组，数组里面元素遵守<code>SDCallbacksDictionary</code>,也可以认为数组里面是<code>SDCallbacksDictionary</code>对象；<br><code>executing</code>: 是否在执行，get函数为<code>isExecuting</code>，所以后面都是用self.isExecuting来访问该属性的;<br><code>finished</code>: 执行是否接受，get函数为<code>isFinished</code>;<br><code>imageData</code>: 图像数据，<code>NSMutableData</code>类型,可为空;<br><code>cachedData</code>: 缓存数据;<br><code>unownedSession</code>: 无主的<code>NSURLSession</code>,用weak关键字修饰是因为它是由管理此会话的对象注入的，如果被取消，我们将无法运行与此操作相关的任务,可能是由该操作的持有者引入的。<br><code>ownedSession</code>: 若不用<code>unownedSession</code>，可以用这个；<br><code>dataTask</code>: 操作的任务；<br><code>callbacksLock</code>: 用信号量声明的锁，为了使得<code>callbackBlocks</code>的访问线程安全；<br><code>coderQueue</code>: 图像解码队列；<br><code>backgroundTaskId</code>: 后台任务id<br><code>progressiveCoder</code>: 图像渐进编码；</p>
+<h5 id="implementation"><a href="#implementation" class="headerlink" title="@implementation"></a>@implementation</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@synthesize executing &#x3D; _executing;</span><br><span class="line">@synthesize finished &#x3D; _finished;</span><br></pre></td></tr></table></figure>
+<p>这儿用到了关键字<a href=""><code>synthesize</code></a>，其实这样写后self.executing和self.isExecuting是一样的。其中我们需要了解<a href="https://developer.apple.com/library/archive/documentation/General/Conceptual/DevPedia-CocoaCore/DeclaredProperty.html"><code>property</code></a>相关的作用。</p>
+<p>下面就是方法的具体实现了：<br>开始是一个<a href=""><code>convenience init</code></a>(便宜构造方法)，调用<a href=""><code>designated init</code></a>(指定构造方法，也就是第二个方法）。在指定的构造方法中，是建议所有的属性都被初始化（当然可为空的除外），特别是<code>readonly</code>关键字修饰的属性，若不在构造方法中被初始化，那么其他地方也初始化不了(当然下划线访问(<a href="">KVC</a>)的除外，因为它不调用setter方法)，有兴趣的可以戳<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ObjectiveC/Chapters/ocProperties.html">这里</a>。另外，<code>ViewController</code>进入的方式不同，所调用的初始化方法也不一样，可以戳<a href="">这里</a>哦。</p>
+<p>第三个方法是给下载器操作添加block的，以字典的形式将<code>SDWebImageDownloaderProgressBlock</code>和<code>SDWebImageDownloaderCompletedBlock</code>类型的block 加入到属性<code>callbackBlocks</code>中。</p>
+<p>第四个方法是根据key回调相应的block，<code>[callbacks removeObjectIdenticalTo:[NSNull null]];</code>:是移除<code>[NSNull null]</code></p>
+<p>第五个方法时根据token取消相应的操作，<code>[self.callbackBlocks removeObjectIdenticalTo:token];</code>有点看不明白，<code>callbackBlocks</code>是字典数组怎么移除token,不过搜索一下相对应的token会发现token是函数<code>addHandlersForProgress</code>方法返回的对象。至于这儿为什么当<code>self.callbackBlocks.count == 0</code>的时候才执行<code>[self cancel]</code>,我想一个操作里面的callbackBlocks属性是一个最多只有一个字典的数组吧。值得注意的是最后调用的函数<code>cancelInternal</code>里面存在这样的一句代码:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">__weak typeof(self) weakSelf &#x3D; self;</span><br><span class="line">dispatch_async(dispatch_get_main_queue(), ^&#123;</span><br><span class="line">      [[NSNotificationCenter defaultCenter] postNotificationName:SDWebImageDownloadStopNotification object:weakSelf];</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>在主线程中post通知，这个涉及到一个知识点——<a href="">通知与多线程</a>之间的关系，通常发送消息和接收消息会在一个线程中，但是也可以改变的哦。</p>
+<p>下面有两个set函数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">- (void)setFinished:(BOOL)finished &#123;</span><br><span class="line">    [self willChangeValueForKey:@&quot;isFinished&quot;];</span><br><span class="line">    _finished &#x3D; finished;</span><br><span class="line">    [self didChangeValueForKey:@&quot;isFinished&quot;];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (void)setExecuting:(BOOL)executing &#123;</span><br><span class="line">    [self willChangeValueForKey:@&quot;isExecuting&quot;];</span><br><span class="line">    _executing &#x3D; executing;</span><br><span class="line">    [self didChangeValueForKey:@&quot;isExecuting&quot;];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其实如果不写这两个函数，编译器会自动生成的，这儿重写了这两个方法，和我们平常不太一样的是多了两个方法:<code>[self willChangeValueForKey:@&quot;isFinished&quot;];</code>和<code>[self didChangeValueForKey:@&quot;isExecuting&quot;];</code>这个在执行的时候会给相应的监听者发送通知，详细的可以看<a href="">KVO</a>。</p>
+<p>下面是五个<code>NSURLSessionDataDelegate</code>代理的方法的实现，它们都是可选的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;* The task has received a response and no further messages will be</span><br><span class="line"> * received until the completion block is called. The disposition</span><br><span class="line"> * allows you to cancel a request or to turn a data task into a</span><br><span class="line"> * download task. This delegate message is optional - if you do not</span><br><span class="line"> * implement it, you can get the response as a property of the task.</span><br><span class="line"> *</span><br><span class="line"> * This method will not be called for background upload tasks (which cannot be converted to download tasks).</span><br><span class="line"> *&#x2F;</span><br><span class="line">- (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask</span><br><span class="line">                                 didReceiveResponse:(NSURLResponse *)response</span><br><span class="line">                                  completionHandler:(void (^)(NSURLSessionResponseDisposition disposition))completionHandler;</span><br></pre></td></tr></table></figure>
+<p>根据注释知道：任务已经收到响应，没有其他消息接收，直到调用结束时的block。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/09/30/SDWebImage-%E4%BA%8C/" rel="next" title="SDWebImage(二)">
+                <i class="fa fa-chevron-left"></i> SDWebImage(二)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/11/13/%E5%B1%9E%E6%80%A7%E5%92%8C%E5%85%B3%E9%94%AE%E5%AD%97/" rel="prev" title="属性和关键字">
+                属性和关键字 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Jaylan lu</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#SDWebImageDownloaderOperationInterface"><span class="nav-number">1.</span> <span class="nav-text">SDWebImageDownloaderOperationInterface</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SDWebImageDownloaderOperation"><span class="nav-number">2.</span> <span class="nav-text">SDWebImageDownloaderOperation</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#m文件中"><span class="nav-number">2.1.</span> <span class="nav-text">.m文件中</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#implementation"><span class="nav-number">2.1.1.</span> <span class="nav-text">@implementation</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jaylan lu</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -371,7 +371,9 @@
         
           
           ###堆栈的区别（宿（速）管分碎地）
-地址：栈连续，地址是从高地址往低地址扩展，且最大容量由系统预先
+地址：栈连续，地址是从高地址往低地址扩展，且最大容量由系统预先规定好，超过剩余空间会overflow；
+堆不连续，操作系统有记录空闲内存地址的链表，遍历方向是由低向高地址
+####分配：堆都为动态分配，栈有动态和静态分配，静态如局部变量，动态为alloc分配，栈
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -623,7 +625,8 @@
       
         
           
-          说句惭愧的话，关于runloop的文章看了很多遍，一直没弄透，从开始的晦涩难懂、味如嚼蜡到懵懵懂懂，
+          说句惭愧的话，关于runloop的文章看了很多遍，一直没弄透，从开始的晦涩难懂、味如嚼蜡到懵懵懂懂，但现在的熟练如心。但是为了更深入地理解和梳理知识，还是写下这篇博客。runloop在官网是有比较详细的介绍的，第一手资料在这里
+runloop是和线程相关的基础设置的一部分，它是一个事件处理的循环，你
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -749,7 +752,7 @@
       
         
           
-          早就想写博客了，不过一直没有付诸行动，原因只有一个——懒。其实在这个过程中自己也写了一些笔记，这两者
+          早就想写博客了，不过一直没有付诸行动，原因只有一个——懒。其实在这个过程中自己也写了一些笔记，这两者差别还是蛮大的：笔记是零散的，主要是记录一些零碎的知识点或者是一些问题的解决方法，这些东西其实网上都是可查的用处不大，反正我的笔记除了翻译其他的基本不会再看；博客不同，写博客其实不是装逼的，也不是写给
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -875,7 +878,7 @@
       
         
           
-          在浏览器中输入www.baidu.com，按了回车之后会发生什么？1 浏览器会向DNS服务器请求对应
+          在浏览器中输入www.baidu.com，按了回车之后会发生什么？1 浏览器会向DNS服务器请求对应的IP地址2 服务器返回IP地址3 浏览器打开tcp，向web服务器发送http请求4 如果出现重定向，服务器会响应重定向，让浏览器在此发起请求5 服务器返回HTTP请求6 浏览器接受页面的源码6 浏
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1002,7 +1005,7 @@
         
           
           
-包（Packet）:包相当于信件或者包裹，而交换机和路由器相当于邮局或快递公司的分拣处理处，数字信
+包（Packet）:包相当于信件或者包裹，而交换机和路由器相当于邮局或快递公司的分拣处理处，数字信息相当于信的内容，将数字信息分割成一个一个的小块，然后装入一些被称为“包（Packet）的容器中运送”。包的头部存有目的地等控制信息，通过许多交换机和路由器的接力，就可以根据控制信息对这些包进行分拣，
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1099,6 +1102,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index">
+                    <span itemprop="name">基础</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -1129,7 +1154,7 @@
         
           
           官网链接点这里
-概述App使用响应者对象接收和处理事件，响应者对象时任何UIResponder类的实
+概述App使用响应者对象接收和处理事件，响应者对象时任何UIResponder类的实例，UIResponder的常见子类包括UIView、UIViewController和UIApplication。响应者接收到原始事件数据，必须处理或者传递给另一个响应者对象。当你的APP接收到另一
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1255,7 +1280,8 @@
       
         
           
-          runtime的特性主要是消息传递，若消息在对象中找不到，就进行转发，具体实现我们从以下几个方面介绍
+          runtime的特性主要是消息传递，若消息在对象中找不到，就进行转发，具体实现我们从以下几个方面介绍：
+runtime概论Objective-C扩展了C语言，并加入了面向对象特性和Smalltalk式的消息传递机制。而这个扩展的核心是一个用C和编译语言写的runtime库。它是Objective—C
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1382,7 +1408,8 @@
         
           
           ##KVC官方介绍
-KVC（简直编码）是由NSKeyValueCoding协议启用的机制，对象采用这
+KVC（简直编码）是由NSKeyValueCoding协议启用的机制，对象采用这种机制提供对其属性的间接访问，这种间接访问机制补充了实例变量及其相关访问器方法提供的直接方法。
+KVC是Key Value Coding的简称，它是通过字符串（key）来访问的。KVC比较重要的有一下
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1509,7 +1536,7 @@ KVC（简直编码）是由NSKeyValueCoding协议启用的机制，对象采用�
         
           
           官网链接
-CPU/GPU并行性和共享资源访问CPU和GPU是独立的异步处理器。在一个Metal ap
+CPU/GPU并行性和共享资源访问CPU和GPU是独立的异步处理器。在一个Metal app 或者游戏里面，CPU对命令进行编码,GPU执行命令。在每个frame中重复这个动作，当CPU和GPU都完成了自己的工作后一个整个的frame的工作也完成了。CPU和GPU能够并行工作并且不用等待彼
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1616,7 +1643,7 @@ CPU/GPU并行性和共享资源访问CPU和GPU是独立的异步处理器。在�
               
               <div class="site-state-item site-state-categories">
                 
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">分类</span>
                 
               </div>

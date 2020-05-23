@@ -518,7 +518,7 @@
       
         
           
-          Welcome to Hexo! This is your very first post. Che
+          Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in 
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -645,7 +645,11 @@
         
           
           1.autoreleasepool什么时候释放
-2.KVO的原理，使用时有崩溃过吗，动态生成子类是如
+2.KVO的原理，使用时有崩溃过吗，动态生成子类是如何存储和设计的
+3.从设计角度来讲一下单例的设计模式
+4.程序崩溃时如何保存重要数据，如何增加容错处理，内存已经崩溃了，如何正确记录
+5.设计索引的优缺点
+6.__block关键字，为什么捕获局部变量
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -771,7 +775,7 @@
       
         
           
-          1.对mrc和arc的理解都是iOS的内存管理机制，对于内存管理就必须引入引用计数，oc中refer
+          1.对mrc和arc的理解都是iOS的内存管理机制，对于内存管理就必须引入引用计数，oc中referencecount来记录一个对象的声明周期，alloc、new、copy操作都会将对象的引用加一，release减一，计数器为0时回收空间，arc是编译器特性，在mrc中对于需要release操作的地
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -899,7 +903,7 @@
           
           1.动画有哪些坑  
 
-连续push同一个控制器，优惠会默认转场动画的存才，并且执行转场动画需要时间
+连续push同一个控制器，优惠会默认转场动画的存才，并且执行转场动画需要时间，比如一个界面有多个入口push时，当同时点击会导致pushing the same view controller instance more than once is not supported，
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1025,7 +1029,7 @@
       
         
           
-          ###堆栈的区别宿管分碎地（速度、管理、分配、碎片、地址）速度栈申请速度快，堆速度慢，栈是由系统寄存
+          ###堆栈的区别宿管分碎地（速度、管理、分配、碎片、地址）速度栈申请速度快，堆速度慢，栈是由系统寄存器进栈出栈，堆会按照一定的算法去寻找空间。管理栈由系统管理，堆需要程序员手动管理内存分配堆都是动态分配的，栈有动态和静态分配，静态分配如局部变量的分配，动态分配为alloca分配，栈大小都是固定的，但
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1151,7 +1155,7 @@
       
         
           
-          ###死锁所谓死锁是指多个进程因竞争资源而造成的一种僵局（互相等待），若无外力作用，这些进程都将无法
+          ###死锁所谓死锁是指多个进程因竞争资源而造成的一种僵局（互相等待），若无外力作用，这些进程都将无法向前推进。####死锁产生的原因：系统资源的竞争通常系统中拥有的不可剥夺资源，其数量不足以满足多个进程运行的需要，使得进程在运行过程中，会因争夺资源而陷入僵局。只有对不可剥夺资源的竞争 才可能产生死锁
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1277,7 +1281,7 @@
       
         
           
-          ###锚定一个点，然后在这个点上深耕####技术看似过眼云烟，实则是递进式推动着移动技术的演进热修复
+          ###锚定一个点，然后在这个点上深耕####技术看似过眼云烟，实则是递进式推动着移动技术的演进热修复、动态化和大前端的底层技术都是JavaScriptCore这样的JavaScript虚拟技术；大前端和Flutter的渲染，使用的都是WebCore中的Skia这样的渲染引擎。组件化是将上层业务隔离开
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1403,7 +1407,7 @@
       
         
           
-          设计模式是一套被反复使用的、多数人知晓的、经过分类编目的、代码设计经验的总结。使用设计模式是为了重用
+          设计模式是一套被反复使用的、多数人知晓的、经过分类编目的、代码设计经验的总结。使用设计模式是为了重用代码、让代码更容易被他人理解、保证代码可靠性。 毫无疑问，设计模式于己于他人于系统都是多赢的，设计模式使代码编制真正工程化，设计模式是软件工程的基石，如同大厦的一块块砖石一样。项目中合理地运用设计模式
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1529,8 +1533,9 @@
       
         
           
-          上图是一个典型的MVC结构图。MVC设计模式在应用程序中不仅为对象定义了三个角色(Model，Vie
-          ...
+          上图是一个典型的MVC结构图。MVC设计模式在应用程序中不仅为对象定义了三个角色(Model，View, Controller)，还定义了对象之间的通信方式。这三种类型的对象都通过抽象边界与其他类型的对象分离，并通过这些边界与其他类型的对象通信。
+
+          
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/04/15/MVVM/#more" rel="contents">
@@ -1636,7 +1641,7 @@
               
               <div class="site-state-item site-state-categories">
                 
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">分类</span>
                 
               </div>
